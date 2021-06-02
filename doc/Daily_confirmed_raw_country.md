@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-05-31, COVID-19 Time Series
+## 2021-06-01, COVID-19 Time Series
 # Countries (top 50)
 
 
