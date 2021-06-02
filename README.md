@@ -106,6 +106,7 @@ After under-reporting-adjustment, the obtained infection-fatality-rates no longe
 
 ## Notes
 
+- 6/1/2021: Due to the size limit, the repository was re-created with the estimates since 6/1/2021 and summary datasets since 12/1/2020. The full datasets for 3/4/2021~5/30/2021 were archived at Zenodo.org repository (https://zenodo.org/record/4891013#.YLcHtyVOlps and https://zenodo.org/record/4890831#.YLcHuCVOlps).
 - 12/14/2020: Due to the size limit, the repository was re-created with the data since 12/01/2020. The old estimates until 11/29/2020 were archived in the csv format and can be found at https://github.com/JungsikNoh/Archive_COVID19_Estimated-Size-of-Infectious-Population.
 
 ## Contact
