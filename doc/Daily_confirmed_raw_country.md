@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-03, COVID-19 Time Series
+## 2021-06-04, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -86,13 +86,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Switzerland_newCases.png)  |  ![img](/output/countries_current/Austria_newCases.png)  |  
 
-|  39. Malaysia  |  40. United Arab Emirates  |  
+|  39. Malaysia  |  40. Nepal  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Malaysia_newCases.png)  |  ![img](/output/countries_current/United Arab Emirates_newCases.png)  |  
+|  ![img](/output/countries_current/Malaysia_newCases.png)  |  ![img](/output/countries_current/Nepal_newCases.png)  |  
 
-|  41. Nepal  |  42. Lebanon  |  
+|  41. United Arab Emirates  |  42. Lebanon  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Nepal_newCases.png)  |  ![img](/output/countries_current/Lebanon_newCases.png)  |  
+|  ![img](/output/countries_current/United Arab Emirates_newCases.png)  |  ![img](/output/countries_current/Lebanon_newCases.png)  |  
 
 |  43. Morocco  |  44. Saudi Arabia  |  
 |  :---   |   :---   |  

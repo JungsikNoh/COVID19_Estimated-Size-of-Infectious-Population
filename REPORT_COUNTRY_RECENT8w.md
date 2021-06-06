@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-03, COVID-19 Time Series
+## 2021-06-04, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -283,17 +283,17 @@
 
  <p>&nbsp;</p> 
 
-40. United Arab Emirates <p>
-> <img src="/output/countries_current/United Arab Emirates_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/United Arab Emirates_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/United Arab Emirates_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/United Arab Emirates_Recent_estInfectionsNewCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-41. Nepal <p>
+40. Nepal <p>
 > <img src="/output/countries_current/Nepal_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Nepal_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Nepal_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Nepal_Recent_estInfectionsNewCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+41. United Arab Emirates <p>
+> <img src="/output/countries_current/United Arab Emirates_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/United Arab Emirates_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/United Arab Emirates_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/United Arab Emirates_Recent_estInfectionsNewCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

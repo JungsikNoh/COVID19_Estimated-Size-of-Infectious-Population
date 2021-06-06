@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-03, COVID-19 Time Series
+## 2021-06-04, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -150,17 +150,17 @@
 
  <p>&nbsp;</p> 
 
-21. AL <p>
-> <img src="/output/states_current/AL_newCases7d.png" width="49.5%"/> <img src="/output/states_current/AL_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/states_current/AL_estCumIncidence.png" width="49.5%"/> <img src="/output/states_current/AL_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-22. CO <p>
+21. CO <p>
 > <img src="/output/states_current/CO_newCases7d.png" width="49.5%"/> <img src="/output/states_current/CO_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/states_current/CO_estCumIncidence.png" width="49.5%"/> <img src="/output/states_current/CO_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+22. AL <p>
+> <img src="/output/states_current/AL_newCases7d.png" width="49.5%"/> <img src="/output/states_current/AL_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/states_current/AL_estCumIncidence.png" width="49.5%"/> <img src="/output/states_current/AL_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

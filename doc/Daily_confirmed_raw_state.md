@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-03, COVID-19 Time Series
+## 2021-06-04, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -50,9 +50,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/states_current/MN_newCases.png)  |  ![img](/output/states_current/SC_newCases.png)  |  
 
-|  21. AL  |  22. CO  |  
+|  21. CO  |  22. AL  |  
 |  :---   |   :---   |  
-|  ![img](/output/states_current/AL_newCases.png)  |  ![img](/output/states_current/CO_newCases.png)  |  
+|  ![img](/output/states_current/CO_newCases.png)  |  ![img](/output/states_current/AL_newCases.png)  |  
 
 |  23. LA  |  24. MD  |  
 |  :---   |   :---   |  
