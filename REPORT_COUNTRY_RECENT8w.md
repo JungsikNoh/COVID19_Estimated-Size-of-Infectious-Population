@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-06, COVID-19 Time Series
+## 2021-06-07, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -143,17 +143,17 @@
 
  <p>&nbsp;</p> 
 
-20. Czechia <p>
-> <img src="/output/countries_current/Czechia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Czechia_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Czechia_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Czechia_Recent_estInfectionsNewCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-21. Netherlands <p>
+20. Netherlands <p>
 > <img src="/output/countries_current/Netherlands_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Netherlands_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Netherlands_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Netherlands_Recent_estInfectionsNewCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+21. Czechia <p>
+> <img src="/output/countries_current/Czechia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Czechia_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Czechia_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Czechia_Recent_estInfectionsNewCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

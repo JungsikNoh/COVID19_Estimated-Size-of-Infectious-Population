@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-06, COVID-19 Time Series
+## 2021-06-07, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -46,13 +46,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Peru_newCases.png)  |  ![img](/output/countries_current/Indonesia_newCases.png)  |  
 
-|  19. South Africa  |  20. Czechia  |  
+|  19. South Africa  |  20. Netherlands  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/South Africa_newCases.png)  |  ![img](/output/countries_current/Czechia_newCases.png)  |  
+|  ![img](/output/countries_current/South Africa_newCases.png)  |  ![img](/output/countries_current/Netherlands_newCases.png)  |  
 
-|  21. Netherlands  |  22. Chile  |  
+|  21. Czechia  |  22. Chile  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Netherlands_newCases.png)  |  ![img](/output/countries_current/Chile_newCases.png)  |  
+|  ![img](/output/countries_current/Czechia_newCases.png)  |  ![img](/output/countries_current/Chile_newCases.png)  |  
 
 |  23. Canada  |  24. Philippines  |  
 |  :---   |   :---   |  
