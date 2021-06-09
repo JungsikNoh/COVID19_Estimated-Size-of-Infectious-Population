@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-07, COVID-19 Time Series
+## 2021-06-08, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -185,17 +185,17 @@
 
  <p>&nbsp;</p> 
 
-26. Romania <p>
-> <img src="/output/countries_current/Romania_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Romania_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Romania_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Romania_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-27. Sweden <p>
+26. Sweden <p>
 > <img src="/output/countries_current/Sweden_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Sweden_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Sweden_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Sweden_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+27. Romania <p>
+> <img src="/output/countries_current/Romania_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Romania_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Romania_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Romania_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -353,10 +353,10 @@
 
  <p>&nbsp;</p> 
 
-50. Slovakia <p>
-> <img src="/output/countries_current/Slovakia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Slovakia_cnvd_AscertainmentRate.png" width="49.5%"/> 
+50. Bolivia <p>
+> <img src="/output/countries_current/Bolivia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Bolivia_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
-> <img src="/output/countries_current/Slovakia_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Slovakia_estTransmissionRate.png" width="49.5%"/> 
+> <img src="/output/countries_current/Bolivia_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Bolivia_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

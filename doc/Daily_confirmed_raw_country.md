@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-07, COVID-19 Time Series
+## 2021-06-08, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -58,13 +58,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Canada_newCases.png)  |  ![img](/output/countries_current/Philippines_newCases.png)  |  
 
-|  25. Iraq  |  26. Romania  |  
+|  25. Iraq  |  26. Sweden  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Iraq_newCases.png)  |  ![img](/output/countries_current/Romania_newCases.png)  |  
+|  ![img](/output/countries_current/Iraq_newCases.png)  |  ![img](/output/countries_current/Sweden_newCases.png)  |  
 
-|  27. Sweden  |  28. Belgium  |  
+|  27. Romania  |  28. Belgium  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Sweden_newCases.png)  |  ![img](/output/countries_current/Belgium_newCases.png)  |  
+|  ![img](/output/countries_current/Romania_newCases.png)  |  ![img](/output/countries_current/Belgium_newCases.png)  |  
 
 |  29. Pakistan  |  30. Portugal  |  
 |  :---   |   :---   |  
@@ -106,9 +106,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Bulgaria_newCases.png)  |  ![img](/output/countries_current/Greece_newCases.png)  |  
 
-|  49. Belarus  |  50. Slovakia  |  
+|  49. Belarus  |  50. Bolivia  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Belarus_newCases.png)  |  ![img](/output/countries_current/Slovakia_newCases.png)  |  
+|  ![img](/output/countries_current/Belarus_newCases.png)  |  ![img](/output/countries_current/Bolivia_newCases.png)  |  
 
 Korea, South  
 <img src="/output/countries_current/Korea, South_newCases.png" width="49.5%"/>    

@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-07, COVID-19 Time Series
+## 2021-06-08, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -171,17 +171,17 @@
 
  <p>&nbsp;</p> 
 
-24. MD <p>
-> <img src="/output/states_current/MD_newCases7d.png" width="49.5%"/> <img src="/output/states_current/MD_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/states_current/MD_estCumIncidence.png" width="49.5%"/> <img src="/output/states_current/MD_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-25. KY <p>
+24. KY <p>
 > <img src="/output/states_current/KY_newCases7d.png" width="49.5%"/> <img src="/output/states_current/KY_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/states_current/KY_estCumIncidence.png" width="49.5%"/> <img src="/output/states_current/KY_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+25. MD <p>
+> <img src="/output/states_current/MD_newCases7d.png" width="49.5%"/> <img src="/output/states_current/MD_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/states_current/MD_estCumIncidence.png" width="49.5%"/> <img src="/output/states_current/MD_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

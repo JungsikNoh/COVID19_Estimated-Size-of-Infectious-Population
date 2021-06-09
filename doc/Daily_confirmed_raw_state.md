@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-07, COVID-19 Time Series
+## 2021-06-08, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -54,13 +54,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/states_current/CO_newCases.png)  |  ![img](/output/states_current/AL_newCases.png)  |  
 
-|  23. LA  |  24. MD  |  
+|  23. LA  |  24. KY  |  
 |  :---   |   :---   |  
-|  ![img](/output/states_current/LA_newCases.png)  |  ![img](/output/states_current/MD_newCases.png)  |  
+|  ![img](/output/states_current/LA_newCases.png)  |  ![img](/output/states_current/KY_newCases.png)  |  
 
-|  25. KY  |  26. OK  |  
+|  25. MD  |  26. OK  |  
 |  :---   |   :---   |  
-|  ![img](/output/states_current/KY_newCases.png)  |  ![img](/output/states_current/OK_newCases.png)  |  
+|  ![img](/output/states_current/MD_newCases.png)  |  ![img](/output/states_current/OK_newCases.png)  |  
 
 |  27. WA  |  28. UT  |  
 |  :---   |   :---   |  
