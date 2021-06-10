@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-08, COVID-19 Time Series
+## 2021-06-09, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -78,13 +78,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/states_current/MS_newCases.png)  |  ![img](/output/states_current/KS_newCases.png)  |  
 
-|  35. NE  |  36. NM  |  
+|  35. NE  |  36. OR  |  
 |  :---   |   :---   |  
-|  ![img](/output/states_current/NE_newCases.png)  |  ![img](/output/states_current/NM_newCases.png)  |  
+|  ![img](/output/states_current/NE_newCases.png)  |  ![img](/output/states_current/OR_newCases.png)  |  
 
-|  37. OR  |  38. ID  |  
+|  37. NM  |  38. ID  |  
 |  :---   |   :---   |  
-|  ![img](/output/states_current/OR_newCases.png)  |  ![img](/output/states_current/ID_newCases.png)  |  
+|  ![img](/output/states_current/NM_newCases.png)  |  ![img](/output/states_current/ID_newCases.png)  |  
 
 |  39. WV  |  40. RI  |  
 |  :---   |   :---   |  

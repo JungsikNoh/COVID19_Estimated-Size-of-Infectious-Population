@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-08, COVID-19 Time Series
+## 2021-06-09, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -78,13 +78,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/states_current/MS_testPositiveRate.png)  |  ![img](/output/states_current/KS_testPositiveRate.png)  |  
 
-|  35. NE  |  36. NM  |  
+|  35. NE  |  36. OR  |  
 |  :---   |   :---   |  
-|  ![img](/output/states_current/NE_testPositiveRate.png)  |  ![img](/output/states_current/NM_testPositiveRate.png)  |  
+|  ![img](/output/states_current/NE_testPositiveRate.png)  |  ![img](/output/states_current/OR_testPositiveRate.png)  |  
 
-|  37. OR  |  38. ID  |  
+|  37. NM  |  38. ID  |  
 |  :---   |   :---   |  
-|  ![img](/output/states_current/OR_testPositiveRate.png)  |  ![img](/output/states_current/ID_testPositiveRate.png)  |  
+|  ![img](/output/states_current/NM_testPositiveRate.png)  |  ![img](/output/states_current/ID_testPositiveRate.png)  |  
 
 |  39. WV  |  40. RI  |  
 |  :---   |   :---   |  

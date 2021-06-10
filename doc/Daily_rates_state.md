@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-08, COVID-19 Time Series
+## 2021-06-09, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -255,17 +255,17 @@
 
  <p>&nbsp;</p> 
 
-36. NM <p>
-> <img src="/output/states_current/NM_newCases7d.png" width="49.5%"/> <img src="/output/states_current/NM_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/states_current/NM_estCumIncidence.png" width="49.5%"/> <img src="/output/states_current/NM_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-37. OR <p>
+36. OR <p>
 > <img src="/output/states_current/OR_newCases7d.png" width="49.5%"/> <img src="/output/states_current/OR_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/states_current/OR_estCumIncidence.png" width="49.5%"/> <img src="/output/states_current/OR_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+37. NM <p>
+> <img src="/output/states_current/NM_newCases7d.png" width="49.5%"/> <img src="/output/states_current/NM_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/states_current/NM_estCumIncidence.png" width="49.5%"/> <img src="/output/states_current/NM_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
