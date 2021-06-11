@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-09, COVID-19 Time Series
+## 2021-06-10, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -73,17 +73,17 @@
 
  <p>&nbsp;</p> 
 
-10. Germany <p>
-> <img src="/output/countries_current/Germany_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Germany_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Germany_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Germany_Recent_estInfectionsNewCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-11. Spain <p>
+10. Spain <p>
 > <img src="/output/countries_current/Spain_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Spain_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Spain_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Spain_Recent_estInfectionsNewCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+11. Germany <p>
+> <img src="/output/countries_current/Germany_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Germany_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Germany_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Germany_Recent_estInfectionsNewCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

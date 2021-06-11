@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-09, COVID-19 Time Series
+## 2021-06-10, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -26,13 +26,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/United Kingdom_newCases.png)  |  ![img](/output/countries_current/Italy_newCases.png)  |  
 
-|  9. Argentina  |  10. Germany  |  
+|  9. Argentina  |  10. Spain  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Argentina_newCases.png)  |  ![img](/output/countries_current/Germany_newCases.png)  |  
+|  ![img](/output/countries_current/Argentina_newCases.png)  |  ![img](/output/countries_current/Spain_newCases.png)  |  
 
-|  11. Spain  |  12. Colombia  |  
+|  11. Germany  |  12. Colombia  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Spain_newCases.png)  |  ![img](/output/countries_current/Colombia_newCases.png)  |  
+|  ![img](/output/countries_current/Germany_newCases.png)  |  ![img](/output/countries_current/Colombia_newCases.png)  |  
 
 |  13. Iran  |  14. Poland  |  
 |  :---   |   :---   |  
