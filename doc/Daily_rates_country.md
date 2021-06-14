@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-11, COVID-19 Time Series
+## 2021-06-13, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -73,24 +73,24 @@
 
  <p>&nbsp;</p> 
 
-10. Spain <p>
+10. Colombia <p>
+> <img src="/output/countries_current/Colombia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Colombia_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Colombia_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Colombia_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+11. Spain <p>
 > <img src="/output/countries_current/Spain_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Spain_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Spain_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Spain_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
-11. Germany <p>
+12. Germany <p>
 > <img src="/output/countries_current/Germany_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Germany_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Germany_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Germany_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-12. Colombia <p>
-> <img src="/output/countries_current/Colombia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Colombia_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Colombia_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Colombia_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -269,17 +269,17 @@
 
  <p>&nbsp;</p> 
 
-38. Austria <p>
-> <img src="/output/countries_current/Austria_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Austria_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Austria_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Austria_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-39. Malaysia <p>
+38. Malaysia <p>
 > <img src="/output/countries_current/Malaysia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Malaysia_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Malaysia_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Malaysia_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+39. Austria <p>
+> <img src="/output/countries_current/Austria_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Austria_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Austria_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Austria_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -346,17 +346,17 @@
 
  <p>&nbsp;</p> 
 
-49. Belarus <p>
-> <img src="/output/countries_current/Belarus_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Belarus_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Belarus_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Belarus_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-50. Bolivia <p>
+49. Bolivia <p>
 > <img src="/output/countries_current/Bolivia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Bolivia_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Bolivia_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Bolivia_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+50. Belarus <p>
+> <img src="/output/countries_current/Belarus_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Belarus_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Belarus_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Belarus_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
