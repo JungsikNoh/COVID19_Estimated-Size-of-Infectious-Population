@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-16, COVID-19 Time Series
+## 2021-06-17, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -70,9 +70,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Pakistan_newCases.png)  |  ![img](/output/countries_current/Portugal_newCases.png)  |  
 
-|  31. Israel  |  32. Bangladesh  |  
+|  31. Bangladesh  |  32. Israel  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Israel_newCases.png)  |  ![img](/output/countries_current/Bangladesh_newCases.png)  |  
+|  ![img](/output/countries_current/Bangladesh_newCases.png)  |  ![img](/output/countries_current/Israel_newCases.png)  |  
 
 |  33. Hungary  |  34. Japan  |  
 |  :---   |   :---   |  

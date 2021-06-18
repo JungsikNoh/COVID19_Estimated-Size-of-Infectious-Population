@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-16, COVID-19 Time Series
+## 2021-06-17, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -220,17 +220,17 @@
 
  <p>&nbsp;</p> 
 
-31. Israel <p>
-> <img src="/output/countries_current/Israel_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Israel_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Israel_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Israel_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-32. Bangladesh <p>
+31. Bangladesh <p>
 > <img src="/output/countries_current/Bangladesh_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Bangladesh_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Bangladesh_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Bangladesh_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+32. Israel <p>
+> <img src="/output/countries_current/Israel_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Israel_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Israel_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Israel_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
