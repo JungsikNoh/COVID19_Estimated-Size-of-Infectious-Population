@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-18, COVID-19 Time Series
+## 2021-06-19, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -59,17 +59,17 @@
 
  <p>&nbsp;</p> 
 
-8. Italy <p>
-> <img src="/output/countries_current/Italy_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Italy_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Italy_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Italy_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-9. Argentina <p>
+8. Argentina <p>
 > <img src="/output/countries_current/Argentina_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Argentina_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Argentina_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Argentina_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+9. Italy <p>
+> <img src="/output/countries_current/Italy_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Italy_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Italy_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Italy_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -339,17 +339,17 @@
 
  <p>&nbsp;</p> 
 
-48. Greece <p>
-> <img src="/output/countries_current/Greece_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Greece_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Greece_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Greece_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-49. Bolivia <p>
+48. Bolivia <p>
 > <img src="/output/countries_current/Bolivia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Bolivia_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Bolivia_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Bolivia_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+49. Greece <p>
+> <img src="/output/countries_current/Greece_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Greece_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Greece_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Greece_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

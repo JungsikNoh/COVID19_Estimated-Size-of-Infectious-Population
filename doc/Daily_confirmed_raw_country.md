@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-18, COVID-19 Time Series
+## 2021-06-19, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -22,13 +22,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Turkey_newCases.png)  |  ![img](/output/countries_current/Russia_newCases.png)  |  
 
-|  7. United Kingdom  |  8. Italy  |  
+|  7. United Kingdom  |  8. Argentina  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/United Kingdom_newCases.png)  |  ![img](/output/countries_current/Italy_newCases.png)  |  
+|  ![img](/output/countries_current/United Kingdom_newCases.png)  |  ![img](/output/countries_current/Argentina_newCases.png)  |  
 
-|  9. Argentina  |  10. Colombia  |  
+|  9. Italy  |  10. Colombia  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Argentina_newCases.png)  |  ![img](/output/countries_current/Colombia_newCases.png)  |  
+|  ![img](/output/countries_current/Italy_newCases.png)  |  ![img](/output/countries_current/Colombia_newCases.png)  |  
 
 |  11. Spain  |  12. Germany  |  
 |  :---   |   :---   |  
@@ -102,13 +102,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Kazakhstan_newCases.png)  |  ![img](/output/countries_current/Ecuador_newCases.png)  |  
 
-|  47. Bulgaria  |  48. Greece  |  
+|  47. Bulgaria  |  48. Bolivia  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Bulgaria_newCases.png)  |  ![img](/output/countries_current/Greece_newCases.png)  |  
+|  ![img](/output/countries_current/Bulgaria_newCases.png)  |  ![img](/output/countries_current/Bolivia_newCases.png)  |  
 
-|  49. Bolivia  |  50. Belarus  |  
+|  49. Greece  |  50. Belarus  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Bolivia_newCases.png)  |  ![img](/output/countries_current/Belarus_newCases.png)  |  
+|  ![img](/output/countries_current/Greece_newCases.png)  |  ![img](/output/countries_current/Belarus_newCases.png)  |  
 
 Korea, South  
 <img src="/output/countries_current/Korea, South_newCases.png" width="49.5%"/>    
