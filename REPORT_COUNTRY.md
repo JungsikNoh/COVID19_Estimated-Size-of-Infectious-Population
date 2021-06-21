@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-19, COVID-19 Time Series
+## 2021-06-20, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -332,17 +332,17 @@
 
  <p>&nbsp;</p> 
 
-47. Bulgaria <p>
-> <img src="/output/countries_current/Bulgaria_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Bulgaria_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Bulgaria_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Bulgaria_estTotalCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-48. Bolivia <p>
+47. Bolivia <p>
 > <img src="/output/countries_current/Bolivia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Bolivia_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Bolivia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Bolivia_estTotalCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+48. Bulgaria <p>
+> <img src="/output/countries_current/Bulgaria_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Bulgaria_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Bulgaria_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Bulgaria_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

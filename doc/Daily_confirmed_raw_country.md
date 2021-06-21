@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-19, COVID-19 Time Series
+## 2021-06-20, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -102,9 +102,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Kazakhstan_newCases.png)  |  ![img](/output/countries_current/Ecuador_newCases.png)  |  
 
-|  47. Bulgaria  |  48. Bolivia  |  
+|  47. Bolivia  |  48. Bulgaria  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Bulgaria_newCases.png)  |  ![img](/output/countries_current/Bolivia_newCases.png)  |  
+|  ![img](/output/countries_current/Bolivia_newCases.png)  |  ![img](/output/countries_current/Bulgaria_newCases.png)  |  
 
 |  49. Greece  |  50. Belarus  |  
 |  :---   |   :---   |  

@@ -14,7 +14,7 @@
 options(bitmapType = 'cairo')
 
 #curDate = Sys.Date(); print(curDate)
-curDate = '2021-06-19'
+curDate = '2021-06-20'
 print(curDate)
 
 #setwd( )
