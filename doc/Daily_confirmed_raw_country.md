@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-21, COVID-19 Time Series
+## 2021-06-22, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -82,9 +82,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Jordan_newCases.png)  |  ![img](/output/countries_current/Serbia_newCases.png)  |  
 
-|  37. Switzerland  |  38. Malaysia  |  
+|  37. Malaysia  |  38. Switzerland  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Switzerland_newCases.png)  |  ![img](/output/countries_current/Malaysia_newCases.png)  |  
+|  ![img](/output/countries_current/Malaysia_newCases.png)  |  ![img](/output/countries_current/Switzerland_newCases.png)  |  
 
 |  39. Austria  |  40. Nepal  |  
 |  :---   |   :---   |  

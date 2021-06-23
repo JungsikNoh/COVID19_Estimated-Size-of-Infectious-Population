@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-21, COVID-19 Time Series
+## 2021-06-22, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -262,17 +262,17 @@
 
  <p>&nbsp;</p> 
 
-37. Switzerland <p>
-> <img src="/output/countries_current/Switzerland_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Switzerland_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Switzerland_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Switzerland_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-38. Malaysia <p>
+37. Malaysia <p>
 > <img src="/output/countries_current/Malaysia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Malaysia_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Malaysia_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Malaysia_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+38. Switzerland <p>
+> <img src="/output/countries_current/Switzerland_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Switzerland_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Switzerland_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Switzerland_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
