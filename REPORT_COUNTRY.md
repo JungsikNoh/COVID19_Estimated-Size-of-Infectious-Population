@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-23, COVID-19 Time Series
+## 2021-06-24, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -122,17 +122,17 @@
 
  <p>&nbsp;</p> 
 
-17. Peru <p>
-> <img src="/output/countries_current/Peru_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Peru_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Peru_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Peru_estTotalCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-18. Indonesia <p>
+17. Indonesia <p>
 > <img src="/output/countries_current/Indonesia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Indonesia_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Indonesia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Indonesia_estTotalCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+18. Peru <p>
+> <img src="/output/countries_current/Peru_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Peru_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Peru_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Peru_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -213,17 +213,17 @@
 
  <p>&nbsp;</p> 
 
-30. Portugal <p>
-> <img src="/output/countries_current/Portugal_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Portugal_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Portugal_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Portugal_estTotalCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-31. Bangladesh <p>
+30. Bangladesh <p>
 > <img src="/output/countries_current/Bangladesh_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Bangladesh_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Bangladesh_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Bangladesh_estTotalCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+31. Portugal <p>
+> <img src="/output/countries_current/Portugal_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Portugal_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Portugal_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Portugal_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -255,17 +255,17 @@
 
  <p>&nbsp;</p> 
 
-36. Serbia <p>
-> <img src="/output/countries_current/Serbia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Serbia_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Serbia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Serbia_estTotalCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-37. Malaysia <p>
+36. Malaysia <p>
 > <img src="/output/countries_current/Malaysia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Malaysia_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Malaysia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Malaysia_estTotalCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+37. Serbia <p>
+> <img src="/output/countries_current/Serbia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Serbia_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Serbia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Serbia_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -353,10 +353,10 @@
 
  <p>&nbsp;</p> 
 
-50. Belarus <p>
-> <img src="/output/countries_current/Belarus_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Belarus_NewCasesEstConfirmed.png" width="49.5%"/> 
+50. Paraguay <p>
+> <img src="/output/countries_current/Paraguay_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Paraguay_NewCasesEstConfirmed.png" width="49.5%"/> 
 
-> <img src="/output/countries_current/Belarus_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Belarus_estTotalCases.png" width="49.5%"/> 
+> <img src="/output/countries_current/Paraguay_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Paraguay_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
