@@ -4,6 +4,14 @@
 
  <p>&nbsp;</p> 
 
+# Announcement
+
+- 06/28/2021: Thank you for your interests and visiting this repository! Daily updates will be only available until this Friday, 07/02/2021. After that, the estimates will be updated weekly basis. 
+- As long as the data sources keep providing COVID-19 data, anyone can run the script for the daily updates ([COVID19_LatentActualInfectiousPopulation_Vaccination_parallel_Country.R](COVID19_LatentActualInfectiousPopulation_Vaccination_parallel_Country.R) for the countries and TX counties and [COVID19_LatentActualInfectiousPopulation_Vaccination_parallel_State.R](COVID19_LatentActualInfectiousPopulation_Vaccination_parallel_State.R) for US states). 
+
+
+
+
 # II. Population immunity rates
 
  <p>&nbsp;</p> 

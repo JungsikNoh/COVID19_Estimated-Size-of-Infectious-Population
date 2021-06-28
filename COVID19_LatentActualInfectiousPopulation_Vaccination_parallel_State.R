@@ -1,8 +1,7 @@
 ## COVID-19: Estimating the Size of Latent Actual Infectious Population
 ## Jungsik Noh, UTSW, Dallas, TX
 ## 
-## Run COVID19_LatentActualInfectiousPopulation.R -> summariesOverRegions.R
-##      -> reporter.R
+## This script generates all the results for 50 US states.
 #
 # Updates: 
 # J Noh, 08/24/2020. Adjust caption size due to transition to 'cairo' graphics. 
