@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-27, COVID-19 Time Series
+## 2021-06-29, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -38,17 +38,17 @@
 
  <p>&nbsp;</p> 
 
-5. Turkey <p>
-> <img src="/output/countries_current/Turkey_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Turkey_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Turkey_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Turkey_estTotalCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-6. Russia <p>
+5. Russia <p>
 > <img src="/output/countries_current/Russia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Russia_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Russia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Russia_estTotalCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+6. Turkey <p>
+> <img src="/output/countries_current/Turkey_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Turkey_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Turkey_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Turkey_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -339,17 +339,17 @@
 
  <p>&nbsp;</p> 
 
-48. Bulgaria <p>
-> <img src="/output/countries_current/Bulgaria_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Bulgaria_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Bulgaria_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Bulgaria_estTotalCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-49. Greece <p>
+48. Greece <p>
 > <img src="/output/countries_current/Greece_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Greece_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Greece_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Greece_estTotalCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+49. Bulgaria <p>
+> <img src="/output/countries_current/Bulgaria_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Bulgaria_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Bulgaria_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Bulgaria_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

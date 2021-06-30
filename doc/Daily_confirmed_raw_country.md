@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-27, COVID-19 Time Series
+## 2021-06-29, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -18,9 +18,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Brazil_newCases.png)  |  ![img](/output/countries_current/France_newCases.png)  |  
 
-|  5. Turkey  |  6. Russia  |  
+|  5. Russia  |  6. Turkey  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Turkey_newCases.png)  |  ![img](/output/countries_current/Russia_newCases.png)  |  
+|  ![img](/output/countries_current/Russia_newCases.png)  |  ![img](/output/countries_current/Turkey_newCases.png)  |  
 
 |  7. United Kingdom  |  8. Argentina  |  
 |  :---   |   :---   |  
@@ -102,13 +102,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Kazakhstan_newCases.png)  |  ![img](/output/countries_current/Ecuador_newCases.png)  |  
 
-|  47. Bolivia  |  48. Bulgaria  |  
+|  47. Bolivia  |  48. Greece  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Bolivia_newCases.png)  |  ![img](/output/countries_current/Bulgaria_newCases.png)  |  
+|  ![img](/output/countries_current/Bolivia_newCases.png)  |  ![img](/output/countries_current/Greece_newCases.png)  |  
 
-|  49. Greece  |  50. Paraguay  |  
+|  49. Bulgaria  |  50. Paraguay  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Greece_newCases.png)  |  ![img](/output/countries_current/Paraguay_newCases.png)  |  
+|  ![img](/output/countries_current/Bulgaria_newCases.png)  |  ![img](/output/countries_current/Paraguay_newCases.png)  |  
 
 Korea, South  
 <img src="/output/countries_current/Korea, South_newCases.png" width="49.5%"/>    
