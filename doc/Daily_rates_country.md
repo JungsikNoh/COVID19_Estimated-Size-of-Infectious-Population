@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-29, COVID-19 Time Series
+## 2021-06-30, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -248,17 +248,17 @@
 
  <p>&nbsp;</p> 
 
-35. Jordan <p>
-> <img src="/output/countries_current/Jordan_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Jordan_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Jordan_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Jordan_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-36. Malaysia <p>
+35. Malaysia <p>
 > <img src="/output/countries_current/Malaysia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Malaysia_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Malaysia_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Malaysia_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+36. Jordan <p>
+> <img src="/output/countries_current/Jordan_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Jordan_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Jordan_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Jordan_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -339,24 +339,24 @@
 
  <p>&nbsp;</p> 
 
-48. Greece <p>
+48. Paraguay <p>
+> <img src="/output/countries_current/Paraguay_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Paraguay_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Paraguay_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Paraguay_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+49. Greece <p>
 > <img src="/output/countries_current/Greece_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Greece_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Greece_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Greece_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
-49. Bulgaria <p>
+50. Bulgaria <p>
 > <img src="/output/countries_current/Bulgaria_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Bulgaria_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Bulgaria_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Bulgaria_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-50. Paraguay <p>
-> <img src="/output/countries_current/Paraguay_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Paraguay_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Paraguay_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Paraguay_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

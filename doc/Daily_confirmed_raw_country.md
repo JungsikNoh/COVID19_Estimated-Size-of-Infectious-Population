@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-29, COVID-19 Time Series
+## 2021-06-30, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -78,9 +78,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Hungary_newCases.png)  |  ![img](/output/countries_current/Japan_newCases.png)  |  
 
-|  35. Jordan  |  36. Malaysia  |  
+|  35. Malaysia  |  36. Jordan  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Jordan_newCases.png)  |  ![img](/output/countries_current/Malaysia_newCases.png)  |  
+|  ![img](/output/countries_current/Malaysia_newCases.png)  |  ![img](/output/countries_current/Jordan_newCases.png)  |  
 
 |  37. Serbia  |  38. Switzerland  |  
 |  :---   |   :---   |  
@@ -102,13 +102,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Kazakhstan_newCases.png)  |  ![img](/output/countries_current/Ecuador_newCases.png)  |  
 
-|  47. Bolivia  |  48. Greece  |  
+|  47. Bolivia  |  48. Paraguay  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Bolivia_newCases.png)  |  ![img](/output/countries_current/Greece_newCases.png)  |  
+|  ![img](/output/countries_current/Bolivia_newCases.png)  |  ![img](/output/countries_current/Paraguay_newCases.png)  |  
 
-|  49. Bulgaria  |  50. Paraguay  |  
+|  49. Greece  |  50. Bulgaria  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Bulgaria_newCases.png)  |  ![img](/output/countries_current/Paraguay_newCases.png)  |  
+|  ![img](/output/countries_current/Greece_newCases.png)  |  ![img](/output/countries_current/Bulgaria_newCases.png)  |  
 
 Korea, South  
 <img src="/output/countries_current/Korea, South_newCases.png" width="49.5%"/>    

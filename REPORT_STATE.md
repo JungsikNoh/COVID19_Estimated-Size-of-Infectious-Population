@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-29, COVID-19 Time Series
+## 2021-06-30, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -213,17 +213,17 @@
 
  <p>&nbsp;</p> 
 
-30. CT <p>
-> <img src="/output/states_current/CT_newCases7d.png" width="49.5%"/> <img src="/output/states_current/CT_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/states_current/CT_estInfections.png" width="49.5%"/> <img src="/output/states_current/CT_estTotalCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-31. AR <p>
+30. AR <p>
 > <img src="/output/states_current/AR_newCases7d.png" width="49.5%"/> <img src="/output/states_current/AR_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/states_current/AR_estInfections.png" width="49.5%"/> <img src="/output/states_current/AR_estTotalCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+31. CT <p>
+> <img src="/output/states_current/CT_newCases7d.png" width="49.5%"/> <img src="/output/states_current/CT_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/states_current/CT_estInfections.png" width="49.5%"/> <img src="/output/states_current/CT_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
