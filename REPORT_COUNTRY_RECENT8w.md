@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-30, COVID-19 Time Series
+## 2021-07-01, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -66,17 +66,17 @@
 
  <p>&nbsp;</p> 
 
-9. Italy <p>
-> <img src="/output/countries_current/Italy_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Italy_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Italy_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Italy_Recent_estInfectionsNewCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-10. Colombia <p>
+9. Colombia <p>
 > <img src="/output/countries_current/Colombia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Colombia_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Colombia_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Colombia_Recent_estInfectionsNewCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+10. Italy <p>
+> <img src="/output/countries_current/Italy_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Italy_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Italy_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Italy_Recent_estInfectionsNewCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -339,24 +339,24 @@
 
  <p>&nbsp;</p> 
 
-48. Paraguay <p>
+48. Tunisia <p>
+> <img src="/output/countries_current/Tunisia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Tunisia_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Tunisia_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Tunisia_Recent_estInfectionsNewCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+49. Paraguay <p>
 > <img src="/output/countries_current/Paraguay_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Paraguay_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Paraguay_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Paraguay_Recent_estInfectionsNewCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
-49. Greece <p>
+50. Greece <p>
 > <img src="/output/countries_current/Greece_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Greece_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Greece_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Greece_Recent_estInfectionsNewCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-50. Bulgaria <p>
-> <img src="/output/countries_current/Bulgaria_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Bulgaria_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Bulgaria_Recent_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Bulgaria_Recent_estInfectionsNewCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-06-30, COVID-19 Time Series
+## 2021-07-01, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -26,9 +26,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/United Kingdom_newCases.png)  |  ![img](/output/countries_current/Argentina_newCases.png)  |  
 
-|  9. Italy  |  10. Colombia  |  
+|  9. Colombia  |  10. Italy  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Italy_newCases.png)  |  ![img](/output/countries_current/Colombia_newCases.png)  |  
+|  ![img](/output/countries_current/Colombia_newCases.png)  |  ![img](/output/countries_current/Italy_newCases.png)  |  
 
 |  11. Spain  |  12. Germany  |  
 |  :---   |   :---   |  
@@ -102,13 +102,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Kazakhstan_newCases.png)  |  ![img](/output/countries_current/Ecuador_newCases.png)  |  
 
-|  47. Bolivia  |  48. Paraguay  |  
+|  47. Bolivia  |  48. Tunisia  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Bolivia_newCases.png)  |  ![img](/output/countries_current/Paraguay_newCases.png)  |  
+|  ![img](/output/countries_current/Bolivia_newCases.png)  |  ![img](/output/countries_current/Tunisia_newCases.png)  |  
 
-|  49. Greece  |  50. Bulgaria  |  
+|  49. Paraguay  |  50. Greece  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Greece_newCases.png)  |  ![img](/output/countries_current/Bulgaria_newCases.png)  |  
+|  ![img](/output/countries_current/Paraguay_newCases.png)  |  ![img](/output/countries_current/Greece_newCases.png)  |  
 
 Korea, South  
 <img src="/output/countries_current/Korea, South_newCases.png" width="49.5%"/>    
