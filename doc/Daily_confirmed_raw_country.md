@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2021-07-01, COVID-19 Time Series
+## 2021-07-02, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -54,9 +54,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Czechia_newCases.png)  |  ![img](/output/countries_current/Chile_newCases.png)  |  
 
-|  23. Canada  |  24. Philippines  |  
+|  23. Philippines  |  24. Canada  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Canada_newCases.png)  |  ![img](/output/countries_current/Philippines_newCases.png)  |  
+|  ![img](/output/countries_current/Philippines_newCases.png)  |  ![img](/output/countries_current/Canada_newCases.png)  |  
 
 |  25. Iraq  |  26. Sweden  |  
 |  :---   |   :---   |  
