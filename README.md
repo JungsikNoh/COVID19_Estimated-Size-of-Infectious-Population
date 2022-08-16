@@ -12,16 +12,6 @@
 
 
 
-# II. Population immunity rates
-
- <p>&nbsp;</p> 
-
-Vaccination data from [Our World in Data](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations). Vaccination rates are visualized at [Summary_country](doc/Summary_country.md) and [Summary_state](doc/Summary_state.md).
-
-
-> <img src="/output/countries_current/pctVaccinatedInfected.png" /> 
-
-> <img src="/output/states_current/pctVaccinatedInfected.png" /> 
 
  <p>&nbsp;</p> 
 
@@ -114,6 +104,7 @@ After under-reporting-adjustment, the obtained infection-fatality-rates no longe
 
 ## Notes
 
+- 8/16/2022: Due to the size limit, the repository was re-created with the estimates from 08/17/2021. 
 - 1/4/2022: Due to the size limit, the repository was re-created with the estimates from 01/03/2021.
 - 11/10/2021: Due to the size limit, the repository was re-created with the estimates since 11/04/2021 and summary datasets since 12/1/2020. The full datasets for 6/1/2021~11/04/2021 were archived at Zenodo.org repository (https://zenodo.org/record/5669373#.YYwrdCVMHLk and https://zenodo.org/record/5669040#.YYwriiVMHLk).
 - 6/1/2021: Due to the size limit, the repository was re-created with the estimates since 6/1/2021 and summary datasets since 12/1/2020. The full datasets for 3/4/2021~5/30/2021 were archived at Zenodo.org repository (https://zenodo.org/record/4891013#.YLcHtyVOlps and https://zenodo.org/record/4890831#.YLcHuCVOlps).
