@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-08-16, COVID-19 Time Series
+## 2022-08-18, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -143,17 +143,17 @@
 
  <p>&nbsp;</p> 
 
-20. CO <p>
-> <img src="/output/states_current/CO_newCases7d.png" width="49.5%"/> <img src="/output/states_current/CO_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/states_current/CO_Recent_estInfections.png" width="49.5%"/> <img src="/output/states_current/CO_Recent_estInfectionsNewCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-21. MN <p>
+20. MN <p>
 > <img src="/output/states_current/MN_newCases7d.png" width="49.5%"/> <img src="/output/states_current/MN_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/states_current/MN_Recent_estInfections.png" width="49.5%"/> <img src="/output/states_current/MN_Recent_estInfectionsNewCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+21. CO <p>
+> <img src="/output/states_current/CO_newCases7d.png" width="49.5%"/> <img src="/output/states_current/CO_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/states_current/CO_Recent_estInfections.png" width="49.5%"/> <img src="/output/states_current/CO_Recent_estInfectionsNewCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

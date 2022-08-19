@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-08-16, COVID-19 Time Series
+## 2022-08-18, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -46,13 +46,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/states_current/WI_newCases.png)  |  ![img](/output/states_current/WA_newCases.png)  |  
 
-|  19. SC  |  20. CO  |  
+|  19. SC  |  20. MN  |  
 |  :---   |   :---   |  
-|  ![img](/output/states_current/SC_newCases.png)  |  ![img](/output/states_current/CO_newCases.png)  |  
+|  ![img](/output/states_current/SC_newCases.png)  |  ![img](/output/states_current/MN_newCases.png)  |  
 
-|  21. MN  |  22. MO  |  
+|  21. CO  |  22. MO  |  
 |  :---   |   :---   |  
-|  ![img](/output/states_current/MN_newCases.png)  |  ![img](/output/states_current/MO_newCases.png)  |  
+|  ![img](/output/states_current/CO_newCases.png)  |  ![img](/output/states_current/MO_newCases.png)  |  
 
 |  23. KY  |  24. AL  |  
 |  :---   |   :---   |  
