@@ -4,19 +4,19 @@
 
  <p>&nbsp;</p> 
 
-## 2022-08-18, COVID-19 Time Series
+## 2022-09-01, COVID-19 Time Series
 # TX counties (top 15) 
 
 
  <p>&nbsp;</p> 
 
-|  1. Harris  |  2. Bexar  |  
+|  1. Harris  |  2. Dallas  |  
 |  :---   |   :---   |  
-|  ![img](/output/TX_counties_current/Harris_newCases.png)  |  ![img](/output/TX_counties_current/Bexar_newCases.png)  |  
+|  ![img](/output/TX_counties_current/Harris_newCases.png)  |  ![img](/output/TX_counties_current/Dallas_newCases.png)  |  
 
-|  3. Dallas  |  4. Tarrant  |  
+|  3. Bexar  |  4. Tarrant  |  
 |  :---   |   :---   |  
-|  ![img](/output/TX_counties_current/Dallas_newCases.png)  |  ![img](/output/TX_counties_current/Tarrant_newCases.png)  |  
+|  ![img](/output/TX_counties_current/Bexar_newCases.png)  |  ![img](/output/TX_counties_current/Tarrant_newCases.png)  |  
 
 |  5. Travis  |  6. Collin  |  
 |  :---   |   :---   |  
