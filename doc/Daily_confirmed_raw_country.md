@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-09-01, COVID-19 Time Series
+## 2022-09-08, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -18,17 +18,17 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Brazil_newCases.png)  |  ![img](/output/countries_current/France_newCases.png)  |  
 
-|  5. Germany  |  6. United Kingdom  |  
+|  5. Germany  |  6. Korea, South  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Germany_newCases.png)  |  ![img](/output/countries_current/United Kingdom_newCases.png)  |  
+|  ![img](/output/countries_current/Germany_newCases.png)  |  ![img](/output/countries_current/Korea, South_newCases.png)  |  
 
-|  7. Korea, South  |  8. Italy  |  
+|  7. United Kingdom  |  8. Italy  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Korea, South_newCases.png)  |  ![img](/output/countries_current/Italy_newCases.png)  |  
+|  ![img](/output/countries_current/United Kingdom_newCases.png)  |  ![img](/output/countries_current/Italy_newCases.png)  |  
 
-|  9. Russia  |  10. Japan  |  
+|  9. Japan  |  10. Russia  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Russia_newCases.png)  |  ![img](/output/countries_current/Japan_newCases.png)  |  
+|  ![img](/output/countries_current/Japan_newCases.png)  |  ![img](/output/countries_current/Russia_newCases.png)  |  
 
 |  11. Turkey  |  12. Spain  |  
 |  :---   |   :---   |  
@@ -50,21 +50,21 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Indonesia_newCases.png)  |  ![img](/output/countries_current/Colombia_newCases.png)  |  
 
-|  21. Poland  |  22. Portugal  |  
+|  21. Poland  |  22. Taiwan*  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Poland_newCases.png)  |  ![img](/output/countries_current/Portugal_newCases.png)  |  
+|  ![img](/output/countries_current/Poland_newCases.png)  |  ![img](/output/countries_current/Taiwan*_newCases.png)  |  
 
-|  23. Taiwan*  |  24. Ukraine  |  
+|  23. Portugal  |  24. Ukraine  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Taiwan*_newCases.png)  |  ![img](/output/countries_current/Ukraine_newCases.png)  |  
+|  ![img](/output/countries_current/Portugal_newCases.png)  |  ![img](/output/countries_current/Ukraine_newCases.png)  |  
 
-|  25. Austria  |  26. Malaysia  |  
+|  25. Austria  |  26. Greece  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Austria_newCases.png)  |  ![img](/output/countries_current/Malaysia_newCases.png)  |  
+|  ![img](/output/countries_current/Austria_newCases.png)  |  ![img](/output/countries_current/Greece_newCases.png)  |  
 
-|  27. Greece  |  28. Thailand  |  
+|  27. Malaysia  |  28. Thailand  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Greece_newCases.png)  |  ![img](/output/countries_current/Thailand_newCases.png)  |  
+|  ![img](/output/countries_current/Malaysia_newCases.png)  |  ![img](/output/countries_current/Thailand_newCases.png)  |  
 
 |  29. Israel  |  30. Chile  |  
 |  :---   |   :---   |  
@@ -86,13 +86,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Philippines_newCases.png)  |  ![img](/output/countries_current/Denmark_newCases.png)  |  
 
-|  39. Romania  |  40. Slovakia  |  
+|  39. Romania  |  40. China  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Romania_newCases.png)  |  ![img](/output/countries_current/Slovakia_newCases.png)  |  
+|  ![img](/output/countries_current/Romania_newCases.png)  |  ![img](/output/countries_current/China_newCases.png)  |  
 
-|  41. Sweden  |  42. China  |  
+|  41. Slovakia  |  42. Sweden  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Sweden_newCases.png)  |  ![img](/output/countries_current/China_newCases.png)  |  
+|  ![img](/output/countries_current/Slovakia_newCases.png)  |  ![img](/output/countries_current/Sweden_newCases.png)  |  
 
 |  43. Iraq  |  44. Serbia  |  
 |  :---   |   :---   |  
@@ -106,9 +106,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Singapore_newCases.png)  |  ![img](/output/countries_current/New Zealand_newCases.png)  |  
 
-|  49. Georgia  |  50. Jordan  |  
+|  49. Jordan  |  50. Georgia  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Georgia_newCases.png)  |  ![img](/output/countries_current/Jordan_newCases.png)  |  
+|  ![img](/output/countries_current/Jordan_newCases.png)  |  ![img](/output/countries_current/Georgia_newCases.png)  |  
 
 Korea, South  
 <img src="/output/countries_current/Korea, South_newCases.png" width="49.5%"/>    
