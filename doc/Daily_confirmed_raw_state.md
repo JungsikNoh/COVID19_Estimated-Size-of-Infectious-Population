@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-09-13, COVID-19 Time Series
+## 2022-09-15, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -70,9 +70,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/states_current/AR_newCases.png)  |  ![img](/output/states_current/MS_newCases.png)  |  
 
-|  31. OR  |  32. CT  |  
+|  31. CT  |  32. OR  |  
 |  :---   |   :---   |  
-|  ![img](/output/states_current/OR_newCases.png)  |  ![img](/output/states_current/CT_newCases.png)  |  
+|  ![img](/output/states_current/CT_newCases.png)  |  ![img](/output/states_current/OR_newCases.png)  |  
 
 |  33. KS  |  34. IA  |  
 |  :---   |   :---   |  

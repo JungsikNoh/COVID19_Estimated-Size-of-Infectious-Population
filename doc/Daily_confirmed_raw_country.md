@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-09-08, COVID-19 Time Series
+## 2022-09-15, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -102,13 +102,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Hungary_newCases.png)  |  ![img](/output/countries_current/Bangladesh_newCases.png)  |  
 
-|  47. Singapore  |  48. New Zealand  |  
+|  47. Singapore  |  48. Georgia  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Singapore_newCases.png)  |  ![img](/output/countries_current/New Zealand_newCases.png)  |  
+|  ![img](/output/countries_current/Singapore_newCases.png)  |  ![img](/output/countries_current/Georgia_newCases.png)  |  
 
-|  49. Jordan  |  50. Georgia  |  
+|  49. New Zealand  |  50. Jordan  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Jordan_newCases.png)  |  ![img](/output/countries_current/Georgia_newCases.png)  |  
+|  ![img](/output/countries_current/New Zealand_newCases.png)  |  ![img](/output/countries_current/Jordan_newCases.png)  |  
 
 Korea, South  
 <img src="/output/countries_current/Korea, South_newCases.png" width="49.5%"/>    

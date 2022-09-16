@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-09-13, COVID-19 Time Series
+## 2022-09-15, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -220,17 +220,17 @@
 
  <p>&nbsp;</p> 
 
-31. OR <p>
-> <img src="/output/states_current/OR_newCases7d.png" width="49.5%"/> <img src="/output/states_current/OR_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/states_current/OR_estInfections.png" width="49.5%"/> <img src="/output/states_current/OR_estTotalCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-32. CT <p>
+31. CT <p>
 > <img src="/output/states_current/CT_newCases7d.png" width="49.5%"/> <img src="/output/states_current/CT_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/states_current/CT_estInfections.png" width="49.5%"/> <img src="/output/states_current/CT_estTotalCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+32. OR <p>
+> <img src="/output/states_current/OR_newCases7d.png" width="49.5%"/> <img src="/output/states_current/OR_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/states_current/OR_estInfections.png" width="49.5%"/> <img src="/output/states_current/OR_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

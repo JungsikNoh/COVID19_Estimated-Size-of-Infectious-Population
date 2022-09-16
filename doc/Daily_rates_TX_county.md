@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-09-08, COVID-19 Time Series
+## 2022-09-15, COVID-19 Time Series
 # TX counties (top 15)  
 
 

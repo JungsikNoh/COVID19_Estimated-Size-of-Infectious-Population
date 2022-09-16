@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-09-08, COVID-19 Time Series
+## 2022-09-15, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -339,24 +339,24 @@
 
  <p>&nbsp;</p> 
 
-48. New Zealand <p>
+48. Georgia <p>
+> <img src="/output/countries_current/Georgia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Georgia_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Georgia_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Georgia_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+49. New Zealand <p>
 > <img src="/output/countries_current/New Zealand_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/New Zealand_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/New Zealand_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/New Zealand_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
-49. Jordan <p>
+50. Jordan <p>
 > <img src="/output/countries_current/Jordan_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Jordan_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Jordan_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Jordan_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-50. Georgia <p>
-> <img src="/output/countries_current/Georgia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Georgia_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Georgia_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Georgia_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
