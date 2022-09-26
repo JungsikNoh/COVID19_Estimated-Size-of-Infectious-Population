@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-09-15, COVID-19 Time Series
+## 2022-09-22, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -74,13 +74,13 @@
 |  :---   |   :---   |  
 |  ![img](/output/countries_current/Belgium_newCases.png)  |  ![img](/output/countries_current/Canada_newCases.png)  |  
 
-|  33. Peru  |  34. Switzerland  |  
+|  33. Peru  |  34. Czechia  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Peru_newCases.png)  |  ![img](/output/countries_current/Switzerland_newCases.png)  |  
+|  ![img](/output/countries_current/Peru_newCases.png)  |  ![img](/output/countries_current/Czechia_newCases.png)  |  
 
-|  35. Czechia  |  36. South Africa  |  
+|  35. Switzerland  |  36. South Africa  |  
 |  :---   |   :---   |  
-|  ![img](/output/countries_current/Czechia_newCases.png)  |  ![img](/output/countries_current/South Africa_newCases.png)  |  
+|  ![img](/output/countries_current/Switzerland_newCases.png)  |  ![img](/output/countries_current/South Africa_newCases.png)  |  
 
 |  37. Philippines  |  38. Denmark  |  
 |  :---   |   :---   |  

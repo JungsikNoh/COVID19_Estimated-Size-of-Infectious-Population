@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-09-15, COVID-19 Time Series
+## 2022-09-22, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -241,17 +241,17 @@
 
  <p>&nbsp;</p> 
 
-34. Switzerland <p>
-> <img src="/output/countries_current/Switzerland_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Switzerland_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Switzerland_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Switzerland_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-35. Czechia <p>
+34. Czechia <p>
 > <img src="/output/countries_current/Czechia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Czechia_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Czechia_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Czechia_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+35. Switzerland <p>
+> <img src="/output/countries_current/Switzerland_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Switzerland_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Switzerland_estCumIncidence.png" width="49.5%"/> <img src="/output/countries_current/Switzerland_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

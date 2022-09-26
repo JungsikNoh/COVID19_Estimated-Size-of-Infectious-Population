@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-09-15, COVID-19 Time Series
+## 2022-09-22, COVID-19 Time Series
 # TX counties (top 15) 
 
 
@@ -17,17 +17,17 @@
 
  <p>&nbsp;</p> 
 
-2. Dallas <p>
-> <img src="/output/TX_counties_current/Dallas_newCases7d.png" width="49.5%"/> <img src="/output/TX_counties_current/Dallas_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/TX_counties_current/Dallas_Recent_estInfections.png" width="49.5%"/> <img src="/output/TX_counties_current/Dallas_Recent_estInfectionsNewCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-3. Bexar <p>
+2. Bexar <p>
 > <img src="/output/TX_counties_current/Bexar_newCases7d.png" width="49.5%"/> <img src="/output/TX_counties_current/Bexar_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/TX_counties_current/Bexar_Recent_estInfections.png" width="49.5%"/> <img src="/output/TX_counties_current/Bexar_Recent_estInfectionsNewCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+3. Dallas <p>
+> <img src="/output/TX_counties_current/Dallas_newCases7d.png" width="49.5%"/> <img src="/output/TX_counties_current/Dallas_Recent_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/TX_counties_current/Dallas_Recent_estInfections.png" width="49.5%"/> <img src="/output/TX_counties_current/Dallas_Recent_estInfectionsNewCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
