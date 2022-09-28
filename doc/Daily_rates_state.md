@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-09-20, COVID-19 Time Series
+## 2022-09-27, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -150,17 +150,17 @@
 
  <p>&nbsp;</p> 
 
-21. CO <p>
-> <img src="/output/states_current/CO_newCases7d.png" width="49.5%"/> <img src="/output/states_current/CO_cnvd_AscertainmentRate.png" width="49.5%"/> 
-
-> <img src="/output/states_current/CO_estCumIncidence.png" width="49.5%"/> <img src="/output/states_current/CO_estTransmissionRate.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-22. MO <p>
+21. MO <p>
 > <img src="/output/states_current/MO_newCases7d.png" width="49.5%"/> <img src="/output/states_current/MO_cnvd_AscertainmentRate.png" width="49.5%"/> 
 
 > <img src="/output/states_current/MO_estCumIncidence.png" width="49.5%"/> <img src="/output/states_current/MO_estTransmissionRate.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+22. CO <p>
+> <img src="/output/states_current/CO_newCases7d.png" width="49.5%"/> <img src="/output/states_current/CO_cnvd_AscertainmentRate.png" width="49.5%"/> 
+
+> <img src="/output/states_current/CO_estCumIncidence.png" width="49.5%"/> <img src="/output/states_current/CO_estTransmissionRate.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
