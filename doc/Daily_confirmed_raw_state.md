@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-09-27, COVID-19 Time Series
+## 2022-09-29, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -50,9 +50,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/states_current/SC_newCases.png)  |  ![img](/output/states_current/MN_newCases.png)  |  
 
-|  21. MO  |  22. CO  |  
+|  21. CO  |  22. MO  |  
 |  :---   |   :---   |  
-|  ![img](/output/states_current/MO_newCases.png)  |  ![img](/output/states_current/CO_newCases.png)  |  
+|  ![img](/output/states_current/CO_newCases.png)  |  ![img](/output/states_current/MO_newCases.png)  |  
 
 |  23. KY  |  24. AL  |  
 |  :---   |   :---   |  
@@ -90,9 +90,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/states_current/ID_newCases.png)  |  ![img](/output/states_current/RI_newCases.png)  |  
 
-|  41. NH  |  42. HI  |  
+|  41. HI  |  42. NH  |  
 |  :---   |   :---   |  
-|  ![img](/output/states_current/NH_newCases.png)  |  ![img](/output/states_current/HI_newCases.png)  |  
+|  ![img](/output/states_current/HI_newCases.png)  |  ![img](/output/states_current/NH_newCases.png)  |  
 
 |  43. MT  |  44. DE  |  
 |  :---   |   :---   |  
