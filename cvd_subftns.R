@@ -1,7 +1,6 @@
-##
-##  COVID-19 subfunctions   ##############################
+##  COVID-19 subfunctions  
 ##  07/25/2020, Jungsik Noh, UT Southwestern Medical Center, Dallas, TX
-##  updates
+# Updates
 # 8/12/2020, Add Prevalence Plot. 'xxx_current' folder gathers plots for reporting.
 
 
@@ -400,14 +399,15 @@ initialConfirmRate <- function(stdat6, IFcoef, itod, dtor){
 
 describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
                               ifr0, ifrL, ifrU, itod = 18, dtor = 7){
+# describe_df() is the core function to generate descriptive plots for Covid infections
+# and deaths datasets. It also estimates underascertainment rates and actual numbers 
+# of Covid infections including undocumented cases. 
   
-  
-  ## pop adjustment: stdat5 xx
+  # pop adjustment
   stdat5 = data.frame(date = stdat4$mydates)
-  #stdat5 = cbind(stdat5, round(stdat4[, 2:5] * (1/Xpop * 10^6), 6))
   stdat5 = cbind(stdat5, stdat4[, 2:5] )
   
-  # infected: total cases - recovered - death
+  # infected = total cases - recovered - death
   stdat5$infected = stdat5$positive - stdat5$recovered - stdat5$death
   
   stdat5$dif_cases = c(NA, diff(stdat5$positive))  
@@ -416,8 +416,7 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   stdat5$dif_death = c(NA, diff(stdat5$death))  
   stdat5$dif_infected = c(NA, diff(stdat5$infected)) 
   
-  
-  ## Daily new confirmed cases (2davg)
+  # Daily new confirmed cases
   stdat6 = data.frame(date = stdat4$mydates)
   stdat6$positive = stdat5$positive
   stdat6$death = stdat5$death
@@ -444,45 +443,19 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   stdat6$dif_recovered7 = filter(stdat6$dif_recovered2, weight0, 'convolution', sides=1)  
   stdat6$dif_death7 = filter(stdat6$dif_death2, weight0, 'convolution', sides=1)  
   stdat6$dif_infected7 = filter(stdat6$dif_infected2, weight0, "convolution", sides=1)  
-  
-  ## 05/14, 06/02 >=0
+   
   stdat6$positive7 = naFilter(stdat5$positive, weight0)
   stdat6$death7 = naFilter(stdat5$death, weight0)
   stdat6$recovered7 = naFilter(stdat5$recovered, weight0)
   stdat6$dif_pos7 = pmax(0, c(NA, diff(stdat6$positive7)))
   stdat6$dif_dea7 = pmax(0, c(NA, diff(stdat6$death7)))
   stdat6$dif_rec7 = pmax(0, c(NA, diff(stdat6$recovered7)))
-  # 08/02
+
   stdat6$numTests7 = filter(stdat5$numTests, weight0, 'convolution', sides=1)
   stdat6$dif_tst7 = c(NA, diff(stdat6$numTests7))
   
-  
-  ## 7d tests
-  #stdat6$numTests7 = naFilter(stdat5$numTests, weight0)
-  #stdat6$dif_numTests7 = pmax(0, c(NA, diff(stdat6$numTests7)))
-  #stdat6$testPos = stdat5$dif_cases / stdat5$dif_tests * 100
-  #stdat6$testPos7 = filter(stdat6$testPos, weight0, 'convolution', sides=1) 
-  
-  #testsFreq = dif_tests / dif_cases
-  #stdat6$pctTestPos2 = stdat6$dif_cases2 / stdat6$dif_tests2 * 100
-  #stdat6$pctTestPos7 = stdat6$dif_cases7 / stdat6$dif_tests7 * 100
-  #stdat6$pctTestPos77 = stdat6$dif_pos7 / stdat6$dif_numTests7 * 100
   stdat6$testPosRate7 = stdat6$dif_pos7 / stdat6$dif_tst7 * 100
-  
-  
-  # GR of positive
-  #tmp = diff(stdat5$positive) / stdat5$positive[-nrow(stdat5)] * 100
-  #tmp[is.infinite(tmp) | (stdat5$positive[-nrow(stdat5)] < 1)] <- NA
-  #stdat5$gr_positive = round(c(NA, tmp), 8)
-  #stdat5$gr2_positive = filter(stdat5$gr_positive, c(1,1)/2, "convolution", sides=1)
-  #stdat5$gr7_positive = filter(stdat5$gr_positive, weight0, "convolution", sides=1)
-  
-  
-  #plot(stdat5$gr_infected2, type='l', ylim=c(0, 50))
-  #lines(stdat5$gr_dif_cases2, col=2)
-  #lines(stdat5$gr_positive2, col=3)
-  #lines(stdat5$gr2_positive2, col=4)
-  
+
   # inc_dif_cases2
   tmp = diff(stdat6$dif_cases2) 
   stdat6$inc_dif_cases2 = c(NA, tmp)

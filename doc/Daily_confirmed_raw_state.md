@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-09-29, COVID-19 Time Series
+## 2022-10-02, COVID-19 Time Series
 # States in the U.S. 
 
 
@@ -50,9 +50,9 @@
 |  :---   |   :---   |  
 |  ![img](/output/states_current/SC_newCases.png)  |  ![img](/output/states_current/MN_newCases.png)  |  
 
-|  21. CO  |  22. MO  |  
+|  21. MO  |  22. CO  |  
 |  :---   |   :---   |  
-|  ![img](/output/states_current/CO_newCases.png)  |  ![img](/output/states_current/MO_newCases.png)  |  
+|  ![img](/output/states_current/MO_newCases.png)  |  ![img](/output/states_current/CO_newCases.png)  |  
 
 |  23. KY  |  24. AL  |  
 |  :---   |   :---   |  
