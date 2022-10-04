@@ -19,10 +19,6 @@ cvd_plotSummaries <- function(cumAsctRate_nudge_x=40, cumAsctRate_nudge_y=4){
   for (i in 1:n){
     numT = nrow(myLst[[i]])
     cfr = myLst[[i]]$CFR[numT]
-    #ecfrk = myLst[[i]]$ECFR_k[numT]
-    #epos18day = myLst[[i]]$Epositive[numT-itod]
-    #eifr = myLst[[i]]$death7[numT] / epos18day * 100
-    # death7/epos18day
     eifradj = myLst[[i]]$EIFRadj_k[numT]
     conf = mean(myLst[[i]]$confirmRate_k, na.rm=T)
     tmp = myLst[[i]]$positive / myLst[[i]]$Epositive * 100
@@ -94,13 +90,9 @@ cvd_plotSummaries <- function(cumAsctRate_nudge_x=40, cumAsctRate_nudge_y=4){
   
   #
   min(regns$EIFRadj)
-  #plot(regns$cumAsctRate, regns$EIFRadj)
-  #text(regns$cumAsctRate, regns$EIFRadj, rgnNames, cex=0.9)
   (ifrcor = cor.test(regns$cumAsctRate, regns$EIFRadj, method = 's'))
   
   min(regns$crudeCFR)
-  #plot(regns$cumAsctRate, regns$crudeCFR)
-  #text(regns$cumAsctRate, regns$crudeCFR, rgnNames, cex=.7)
   (cfrcor = cor.test(regns$cumAsctRate, regns$crudeCFR, method = 's'))
   
   ##
@@ -156,15 +148,11 @@ cvd_plotSummaries <- function(cumAsctRate_nudge_x=40, cumAsctRate_nudge_y=4){
     Sys.sleep(1)
   }
   
-  
   ## EIFRadj
   mycol = c(n:1)
   rgnNames2 = row.names(regns2)
   ind_headtail = union(c(1:10), seq(n-9, n))
   rgnNames2[-ind_headtail] = ""
-  #num1 = sum(regns2$EIFRadj > 0.66)
-  #num2 = n - num1
-  #ind1 = which(regns2$EIFRadj > 0.66)
   ind1 = which(regns2$EIFRadj > mean(regns2$EIFRadj) )
   
   {
@@ -220,7 +208,6 @@ cvd_plotSummaries <- function(cumAsctRate_nudge_x=40, cumAsctRate_nudge_y=4){
     dev.off()
     Sys.sleep(1)
   }
-  
   
   
   ##
@@ -549,7 +536,6 @@ if (nrow(regns3) > 0){
   file.copy(from= file.path(outsumPath, listoffiles), to=output_current, overwrite = T, recursive = T)
 
 }
-
 
 
 ##  EOF

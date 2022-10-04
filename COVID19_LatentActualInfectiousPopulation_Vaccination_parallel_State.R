@@ -10,13 +10,13 @@
 
 library(ggplot2)		  # for plotting
 library(data.table)
-library(formattable)
+library(formattable)  # to use comma() for graphs
 library(ggpubr)
-library(wesanderson)
-library(tseries)
-library(penalized)
-library(parallel)		
-library(doParallel)
+library(wesanderson)  # for wes_palette()
+library(tseries)  
+library(penalized)    # for penalized regression in EM iterations
+library(parallel)		  # simple parallel across regions
+library(doParallel)   # simple parallel across regions
 
 library(ggrepel)		  # for labeling dots in a scatter plot
 library(matlab)
@@ -29,6 +29,7 @@ source(file.path(getwd(), 'cvd_subftns.R'))
 source(file.path(getwd(), 'cvd_county_LatentInfections.R'))
 source(file.path(getwd(), 'cvd_state_LatentInfections.R'))
 source(file.path(getwd(), 'cvd_country_LatentInfections.R'))
+source(file.path(getwd(), 'summariesOverRegions_subftns.R'))
 
 ##
 ## 1. Setup parameters & input
@@ -153,16 +154,10 @@ t2 = Sys.time(); print(t2-t1)
 
 
 ##
-## 4. Make summary for each region
+## 4. Make summary plots for US states (output/state_summary)
 ##
 
 print(curDate)
-source(file.path(getwd(), 'summariesOverRegions_subftns.R'))
-
-##
-## 5. Make summary plots for US states (output/state_summary)
-##
-
 rgnNames = sortedStates2 
 
 # population data preprocessing
@@ -195,12 +190,13 @@ outsumPath = file.path(getwd(), 'output', 'state_summary', paste0(curDate))
 if (!dir.exists(outsumPath)) dir.create(outsumPath, recursive = T)
 output_current = file.path(getwd(), 'output', 'states_current' )
 
-## plot summaries
+# plot summaries
+# taking global variables as input (myLst, rgnNames, outsumPath, popVec)
 cvd_plotSummaries(cumAsctRate_nudge_x = 20, cumAsctRate_nudge_y = 2)
 
 
 ##  
-##  6. Fetch vaccination data  
+## 5. Fetch vaccination data  
 ## 
 
 outsumPath = file.path(getwd(), 'output', 'state_summary', paste0(curDate))
@@ -261,7 +257,7 @@ hit2 = round(100*(1-1/4))
 
 
 ##
-## 7. Summaries of vaccination datasets
+## 6. Summaries of vaccination datasets
 ##
 
 # Summary plots of the vaccinated or once-infected
@@ -499,7 +495,7 @@ file.copy(from= file.path(outsumPath, 'pctFullyVaccinated.png'), to=output_curre
 
 
 ##
-## 8. Generate report markdown files for US states
+## 7. Generate report markdown files for US states
 ##
 
 # 1

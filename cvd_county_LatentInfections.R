@@ -4,9 +4,6 @@
 
 cvd_county_LatentInfections = function(curDate, cntyname, TXcountyDat, TXcountyDat2, 
                                   popTXcounty, ifr0, ifrL, ifrU){
-  #
-  # Estimating unidentified infectious cases
-  # Jungsik Noh, UTSW, Dallas, TX  
   
   outPath = file.path(getwd(), 'output', 'TX_counties', cntyname, 
                       paste0(curDate))
@@ -75,28 +72,14 @@ cvd_county_LatentInfections = function(curDate, cntyname, TXcountyDat, TXcountyD
   
   #
   stdat4$mydates = mydates
+  # so far, url dataset is preprocessed and prepared into the input dataFrame, stdat4
   
-  ## Daily new confirmed cases
-  dif_cases = c(NA, diff(stdat4$positive))  
-  dif_tests = c(NA, diff(stdat4$numTests))  
-  dif_recovered = c(NA, diff(stdat4$recovered))  
-  dif_death = c(NA, diff(stdat4$death))  
-  #d_cases = dif_cases/2
-  #d_tests = dif_tests/2
-  stdat4$dif_cases = dif_cases
-  stdat4$dif_tests = dif_tests
-  stdat4$dif_recovered = dif_recovered
-  stdat4$dif_death = dif_death
-  
-  ##
-  ##  modules
-  ##
+  # core algorithm based on Expectation-Maximization
+  # describe_df() in cvd_subftns.R
   print('==')
   print(stname)
   print('==')
   outdat = describe_df(curDate, stname, stdat4, Xpop, outPath, outPath2, ifr0, ifrL, ifrU)
- 
-  #return(outdat) 
 }
 
 

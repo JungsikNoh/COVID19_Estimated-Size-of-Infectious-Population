@@ -12,7 +12,9 @@ cummax <- function(x) {
   return(y)
 }
 
+
 zsc <- function(x){ (x - mean(x, na.rm=T))/sd(x, na.rm=T)}
+
 
 naFilter <- function(x, w){
   y = rep(NA, length(x))
@@ -24,6 +26,7 @@ naFilter <- function(x, w){
   }
   return(y)
 } 
+
 
 naFilter_2sides <- function(x, w){
   y = rep(NA, length(x))
@@ -38,11 +41,14 @@ naFilter_2sides <- function(x, w){
   return(y)
 } 
 
-####
 
 EM_confirmRate_k <- function(stdat6, sparam1, sparam2){
+# EM_confirmRate_k() implement one interation of the Expectation-Maximization 
+# described in the PlosOne paper. The EM updates Detected Transmission rates and
+# Ascertainment rates with given spline smoothing parameters, which are optimized later.
   
   numT = nrow(stdat6)
+  # To see the initial curve of confirmRate (ascertainment rate)
   # stdat6$confirmRate_pre = confirmRate  
   # stdat6$Einfected_pre = stdat6$Einfected
   # stdat6$Epositive_pre = stdat6$Epositive
@@ -50,27 +56,22 @@ EM_confirmRate_k <- function(stdat6, sparam1, sparam2){
     
   for (k in 1:1000){
     
-    ## Expectation step
-    #dif_Epos_k = stdat6$dif_pos7 * (100/stdat6$confirmRate_pre)    k = k+1
-    
-    ## Maximization 
+    # Maximization 
+    # NCC7PerEI_k = Detected Transmission rate time series
+    # confirmRate = Ascertainment rate time series
     tmp = c(NA, stdat6$Einfected_pre[1:(nrow(stdat6)-1)])
     NCC7PerEI_k = stdat6$dif_pos7 / tmp * 100
     NCC7PerEI_k[stdat6$dif_pos7 == 0] = NaN
     # 08/01
     itstrt = which(is.finite(stdat6$confirmRate_pre))[1]
     NCC7PerEI_k[1:(itstrt-1)] = NaN
-    #stdat6$NCC7PerEinfected_k = naFilter_2sides(NCC7PerEI_k, wList[[j]])
     stdat6$NCC7PerEinfected_k = NCC7PerEI_k
     
-    #
-    #fit0 = lm(stdat6$confirmRate_pre[-1] ~ 0 + stdat6$NCC7PerEinfected_k[-1])
+    # indexes for spline smoothing
     indforsp = (!is.finite(stdat6$confirmRate_pre) | !is.finite(NCC7PerEI_k))
-    # indforsp = (!is.finite(stdat6$confirmRate_pre) ) 
     a1 = stdat6$confirmRate_pre[!indforsp]
     a2 = NCC7PerEI_k[!indforsp]
-    #tmp2 = stdat6$NCC7PerEinfected_k[-1] * mean(a1)/mean(a2)
-    
+
     # log-transform, [0.1%, 99%]-> [1%,99%]
     xx = 1:(numT)
     xx = xx[!indforsp]
@@ -79,48 +80,31 @@ EM_confirmRate_k <- function(stdat6, sparam1, sparam2){
     a1log = log10( a11 )
     a2log = log10( a21 )
     
-    #tmp2 = zsc( a2log ) * sd(a1log) + mean(a1log)
+    # spline smoothing for the log-transformed variables, then regression is
+    # done at the original scale
     ssp2 = smooth.spline(xx, a2log, spar = sparam2)
     yy2 = 100 * 10^ssp2$y 
-    #ssp2 = smooth.spline(xx, a21, spar = sparam)  
-    #yy2 = 100 * ssp2$y 
-    #lines(yy2, col=2)
+
     ssp1 = smooth.spline(xx, a1log, spar = sparam1)
     yy1_0 = 100 * 10^ssp1$y 
     yy1 = yy1_0 * mean(a1) / mean(yy1_0)
-    #ssp1 = smooth.spline(xx, a11, spar = sparam)
-    #yy1 = 100 * ssp1$y
-    #lines(yy1, col=3)
+
     yy2_2 = yy2^2; yy2_3 = yy2^3; yy2_4 = yy2^4; yy2_5 = yy2^5; yy2_6 = yy2^6
-    #sy2_2 = ssp2$y^2; sy2_3 = ssp2$y^3
-    #xx fit0 = lm(ssp1$y ~ ssp2$y + sy2_2 + sy2_3 )
-    #fit0 = lm(yy1 ~ yy2 + yy2_2 + yy2_3 )
-    # 09/02 revised
-    #fit0 = lm(yy1 ~ yy2 + yy2_2 + yy2_3 + yy2_4 )
-    
+
+    # regression with a contraint, coeff's > 0
     # 09/12 to speed up
     fit0 = lm(yy1 ~ yy2 + yy2_2 + yy2_3 + yy2_4 ) ; #print(fit0$coefficients)
     yy1_k = as.numeric(fit0$fitted.values)
     
     # 07/31, from VT example, non-negative constraints needed. 
-    #if (any(is.na(coef(fit0))) | (coef(fit0)[2] < 0) | (coef(fit0)[3] < 0)){
     if (any(is.na(coef(fit0))) | (coef(fit0)[2] < 0) ){
-      #print('Coef < 0 => penalized')
+      # print('If Coef < 0 => penalized')
       pen = penalized(yy1, ~ yy2 + yy2_2 + yy2_3 + yy2_4 , ~ 1, lambda1=0, lambda2=0, positive = T, trace=F, maxiter=100)
       yy1_k = as.numeric(fitted(pen))
       #print(coef(pen))
     }
     
-    
-    #yy1_k = pmax(pmin(yy1_k, 99), 0.1)
-    
-    #yy1_k = 100 * 10^a1log_k
-    #yy3 = a1_k
-    
     yy3 = yy1_k * mean(a1) / mean(yy1_k)
-    #yy3 = yy1_k * mean(a11*100) / mean(yy1_k)
-    
-
     # mean preserving scaling, 06/02
     max3 = max(yy3); min3 = min(yy3); m3 = mean(yy3)
     scmax = (max3 - m3) / (99 - m3)
@@ -128,41 +112,17 @@ EM_confirmRate_k <- function(stdat6, sparam1, sparam2){
     sc0 = max(scmax, scmin, 1)
     yy3sc = m3 + (yy3 - m3) / sc0
     
-    ## truncation, 07/22
-    #yy3sc = pmax(pmin(yy3, 99), 0.1)
-    ##yy3sc = yy3sc * mean(a1) / mean(yy3sc)
-    ##print(mean(yy3sc))
-    
-    #lines(yy3, col=k)
-    # method 2 adjusting STD too
-    #yy4 = 100 * 10^( zsc(ssp2$y) * 0.8 * sd(ssp1$y) +  mean(ssp1$y) )
-    #yy4 = zsc(yy2) * 0.9 * sd(a1) + mean(a1)
-    #lines(yy4, col=k)
-    
-    # bdry condition, < 99%
-    #tmp2 = pmin(tmp2, 99)
-    
     yy3aug = rep(NA, length(stdat6$confirmRate_pre))
     yy3aug[!indforsp] = yy3sc
-    #stdat6$confirmRate_k = c(NA, yy3)
+    
     stdat6$confirmRate_k = yy3aug
     # plot(yy2,yy1); lines(yy2, yy3aug[-1], col=k) 
     #mean(a1); mean(yy1); mean(yy3)
     
-    #confirmRate_k = c(NA, as.numeric(fit0$fitted.values))
+    # Expectation step
     
-    #stdat6$confirmRate7_k = naFilter_2sides(confirmRate_k, wList[[j]])
-    ##stdat6$confirmRate_k = confirmRate_k
-    
-    #confirmRate_k = stdat6$dif_pos7 / dif_Epos_k * 100
-    #stdat6$confirmRate7_k = naFilter_2sides(confirmRate_k, w7Gauss)
-    
-    #stdat6$recRate7_k = naFilter_2sides(stdat6$dailyErecoveredPerEinfected_k, w7Gauss)
-    
-    ##
-    ## Expectation step
     dif_Epos_k = stdat6$dif_pos7 * (100/stdat6$confirmRate_k)
-    #dif_Epos_k[!is.finite(dif_Epos_k)] = 0
+    
     dif_Epos_k[stdat6$dif_pos7 == 0] = 0
     # 08/01
     itstrt = which(is.finite(stdat6$confirmRate_k))[1]
@@ -170,9 +130,6 @@ EM_confirmRate_k <- function(stdat6, sparam1, sparam2){
     if (!is.finite(stVal)) stVal = 0
     stdat6$Epositive_k = c(stdat6$Epositive[1:(itstrt-1)], stVal, 
                             stVal + cumsum(dif_Epos_k[(itstrt+1):numT]))
-    #stdat6$Epositive_k = c( rep(NA, itstrt-1), stVal, 
-    #                       stVal + cumsum(dif_Epos_k[(itstrt+1):numT]))
-    #
     stdat6$Erecovered_k = stdat6$Erecovered
     stdat6$Einfected_k = stdat6$Epositive_k - stdat6$death7 - stdat6$Erecovered_k
     
@@ -188,16 +145,6 @@ EM_confirmRate_k <- function(stdat6, sparam1, sparam2){
                            stVal + cumsum(dif_Epos_k2[(itstrt+1):numT]))
     stdat6$Einfected_k = stdat6$Epositive_k - stdat6$death7 - stdat6$Erecovered_k
     
-    # 07/23, explode
-    #stdat6$confirmRate_k = stdat6$dif_pos7 / pmax(dif_Epos_k2, 1/7) * 100
-    #stdat6$confirmRate_k[stdat6$dif_pos7 == 0] = NaN
-    
-    
-    #plot(tmp2, type='l')
-    #lines(dif_Epos_k, col=2)
-    #plot(stdat6$Einfected_k2, type='l')
-    #lines(stdat6$Einfected_k, col=2)
-    
     # new IR_k
     tmp = c(NA, stdat6$Einfected_k[1:(nrow(stdat6)-1)])
     stdat6$dailyDeathPerEinfected_k = stdat6$dif_dea7 / tmp * 100
@@ -206,15 +153,10 @@ EM_confirmRate_k <- function(stdat6, sparam1, sparam2){
     
     tmp = c(NA, stdat6$Einfected_k[1:(nrow(stdat6)-1)])
     stdat6$dailyRecoveredPerEinfected_k = stdat6$dif_rec7 / tmp * 100
-    #stdat6$dailyErecoveredPerEinfected_k = dif_Erec_k / tmp * 100
     stdat6$dailyErecoveredPerEinfected_k = stdat6$dif_Erecovered / tmp * 100
     
-    #
-    
     stdat6$confirmRate_pre = stdat6$confirmRate_k 
-    #recRate_pre = stdat6$recRate7_k
-    
-    #
+    # death rate time series
     mDR = mean(stdat6$dailyDeathPerEinfected_k, na.rm=T)
     sdDR = sd(stdat6$dailyDeathPerEinfected_k, na.rm=T)
     cvDR = sdDR/mDR * 100
@@ -235,9 +177,6 @@ EM_confirmRate_k <- function(stdat6, sparam1, sparam2){
       print('====')
       break
     }
-    #if (mod(k, 1) == 0) { 
-    #  print(rev(stdat6$Einfected_k)[1]); print(L1val) 
-    #  lines(yy3aug, col=k/1) }
     stdat6$Einfected_pre = stdat6$Einfected_k
   }
   
@@ -247,14 +186,13 @@ EM_confirmRate_k <- function(stdat6, sparam1, sparam2){
   return(output)
 }
 
-##
 
 CI_Estep <- function(stdat6, confirmRate_k, IFcoef, itod, dtor){
-  
+# CI_Estep() compute confidence bands with upper/lower bound of IFR
+    
   numT = nrow(stdat6)
   # for the case when confirmed cases are too large (09/21)
   # death7 => Epositive, Erecovered
-  #numT = nrow(stdat6)
   tmp = stdat6$death7[(itod+1):numT] * IFcoef
   stdat6$Epositive = c(tmp, rep(NA, itod))
   stdat6$Epositive[1] = max(stdat6$Epositive[1], stdat6$positive[1])
@@ -274,14 +212,12 @@ CI_Estep <- function(stdat6, confirmRate_k, IFcoef, itod, dtor){
   shiftedEposMinusDeath = pmax( shiftedEpos - stdat6$death7, stdat6$death7 * (IFcoef - 1) )
   tmpRec = c(rep(0, dtor), shiftedEposMinusDeath[1:(numT-dtor)] ) 
   stdat6$Erecovered = pmax( stdat6$Erecovered, tmpRec )
-  #stdat6$dif_Erecovered = c(NA, diff(stdat6$Erecovered))
+  #stdat6$dif_Erecovered = c(NA, diff(stdat6$Erecovered)) 
   
-  # 09/21
   Erecovered_tmp = stdat6$Erecovered
   
   ## Expectation step
   dif_Epos_k = stdat6$dif_pos7 * (100/confirmRate_k)
-  #dif_Epos_k[!is.finite(dif_Epos_k)] = 0
   dif_Epos_k[stdat6$dif_pos7 == 0] = 0
   # 08/01
   itstrt = which(is.finite(stdat6$confirmRate_k))[1]
@@ -289,7 +225,6 @@ CI_Estep <- function(stdat6, confirmRate_k, IFcoef, itod, dtor){
   if (!is.finite(stVal)) stVal = 0
   Epositive_k = c(stdat6$Epositive[1:(itstrt-1)], stVal, 
                          stVal + cumsum(dif_Epos_k[(itstrt+1):numT]))
-  
   #
   Erecovered_k = Erecovered_tmp
   Einfected_k = Epositive_k - stdat6$death7 - Erecovered_k
@@ -309,7 +244,6 @@ CI_Estep <- function(stdat6, confirmRate_k, IFcoef, itod, dtor){
                   stVal + cumsum(dif_Epos_k2[(itstrt+1):numT]))
   Einfected_k = Epositive_k - stdat6$death7 - Erecovered_k
   
-  # 2021/03/31
   Einfected_k[1:(itstrt-1)] = NA
   Epositive_k[1:(itstrt-1)] = NA
   
@@ -317,13 +251,11 @@ CI_Estep <- function(stdat6, confirmRate_k, IFcoef, itod, dtor){
   return(out)
 }
 
-##
 
 initialConfirmRate <- function(stdat6, IFcoef, itod, dtor){
-  
-  
-  #### EstInfected, EstRecovered (initial)  
-  
+# initialized confirmRate is used to compute the confidence bands
+
+  ## EstInfected, EstRecovered (initial)  
   # initial estimates
   # death7 => Epositive, Erecovered
   numT = nrow(stdat6)
@@ -348,13 +280,10 @@ initialConfirmRate <- function(stdat6, IFcoef, itod, dtor){
   stdat6$Erecovered = pmax( stdat6$Erecovered, tmpRec )
   stdat6$dif_Erecovered = c(NA, diff(stdat6$Erecovered))
   
-  
   r2 = stdat6$dif_Epositive / pmax(stdat6$dif_pos7, 0.5)    # 0.5, instead of 0
   r2[!is.finite(r2)] = NA
   
   weight0 = rep(1,7)/7
-  #weight14 = rep(1, 14)/14
-  #stdat6$r2_14 = filter(r2, weight14, 'convolution', sides = 1)
   stdat6$r2_7 = naFilter(r2, weight0)
   prj_newCases = stdat6$r2_7[numT-itod] * stdat6$dif_pos7[(numT-itod+1):numT]
   stdat6$dif_Epositive[(numT-itod+1):numT] = prj_newCases
@@ -375,35 +304,25 @@ initialConfirmRate <- function(stdat6, IFcoef, itod, dtor){
   stdat6$Epositive = c(stVal, stVal + cumsum(init_dif_Epos2[2:numT]))
   stdat6$Einfected = stdat6$Epositive - stdat6$death7 - stdat6$Erecovered
   stdat6$dif_Epositive = c(NA, diff(stdat6$Epositive))
-  
 
   ## Maximization of confirmRate7, reRate7
-  # wList..
-  
   confirmRate = stdat6$dif_pos7 / pmax(stdat6$dif_Epositive, 1/7) * 100
   confirmRate[stdat6$dif_pos7 == 0] = NaN
   # from Galveston example, correct initial condition
   itstrt = which(stdat6$positive7 < stdat6$Epositive)[1]
   confirmRate[1:(itstrt)] = NaN
-  #stdat6$confirmRate7 = naFilter_2sides(confirmRate, weight16)
-  #stdat6$confirmRate_pre = confirmRate  
-  
+
   return(confirmRate)
-  
 }
 
-
-
-## 
-# 05/08/2020
 
 describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
                               ifr0, ifrL, ifrU, itod = 18, dtor = 7){
 # describe_df() is the core function to generate descriptive plots for Covid infections
 # and deaths datasets. It also estimates underascertainment rates and actual numbers 
 # of Covid infections including undocumented cases. 
+# Parameters: ifr = infection-fatality-rate, itod = days from infection to death
   
-  # pop adjustment
   stdat5 = data.frame(date = stdat4$mydates)
   stdat5 = cbind(stdat5, stdat4[, 2:5] )
   
@@ -456,6 +375,7 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   
   stdat6$testPosRate7 = stdat6$dif_pos7 / stdat6$dif_tst7 * 100
 
+  # Exploring various features with different smoothing, differencing and transformation
   # inc_dif_cases2
   tmp = diff(stdat6$dif_cases2) 
   stdat6$inc_dif_cases2 = c(NA, tmp)
@@ -521,7 +441,7 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   tmp = c(NA, stdat6$infected2[1:(nrow(stdat6)-1)])
   stdat6$NCC7PerInfected2 = stdat6$dif_cases7 / tmp * 100
   
-  ####  Growth Rates  ######!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  # Growth Rates
   # GR of Infected, gr_infected2
   tmp = diff(stdat6$infected2) / stdat6$infected2[-nrow(stdat6)] * 100
   tmp[is.infinite(tmp) | (stdat6$infected2[-nrow(stdat6)] < 20)] <- NA
@@ -562,15 +482,9 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   stdat6$dif_gr_recovered2 = c(NA, diff(stdat6$gr_recovered2))
   stdat6$dif7_gr_recovered2 = filter(stdat6$dif_gr_recovered2, weight0, "convolution", sides=1)
   
-  
-  
-  ######################  new figures 
   # palette
   mpal = wes_palette("BottleRocket2", 5)
-  
-  # pctTestPos7 -> testPos7
-  
-  
+
   # dual y axes
   refVal = rev(stdat6$positive)[1]
   refVal2 = rev(stdat6$death)[1]
@@ -580,8 +494,6 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
     geom_point(aes(x = date, y = positive), alpha=0.5, size=1.5, color=mpal[2]) +
     geom_line(aes(x = date, y = death * ax2, color='Total deaths' ), alpha=0.5, size=1.5) +
     geom_point(aes(x = date, y = death * ax2 ), alpha=0.5, size=1.5, color=mpal[3]) +
-    #geom_line(aes(x = date, y = recovered2), alpha=0.5, size=1.5, color=mpal[1]) +
-    #geom_point(aes(x = date, y = recovered2), alpha=0.5, size=2, color=mpal[1]) +
     
     scale_x_date(date_labels = "%b%d", date_minor_breaks = "1 week", date_breaks = "1 week") +
     theme_bw() +
@@ -614,8 +526,6 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   dev.off()
   Sys.sleep(2)
   
-  
-  
   # dual y axes
   refVal = rev(stdat6$dif_pos7)[1]
   refVal2 = rev(stdat6$dif_dea7)[1]
@@ -625,8 +535,6 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
     geom_point(aes(x = date, y = dif_pos7), alpha=0.5, size=1.5, color=mpal[2]) +
     geom_line(aes(x = date, y = dif_dea7 * ax2, color='New deaths' ), alpha=0.5, size=1.5) +
     geom_point(aes(x = date, y = dif_dea7 * ax2 ), alpha=0.5, size=1.5, color=mpal[3]) +
-    #geom_line(aes(x = date, y = dif_recovered7), alpha=0.5, size=1.5, color=mpal[1]) +
-    #geom_point(aes(x = date, y = dif_recovered7), alpha=0.5, size=2, color=mpal[1]) +
     
     scale_x_date(date_labels = "%b%d", date_minor_breaks = "1 week", date_breaks = "1 week") +
     theme_bw() +
@@ -661,20 +569,17 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   dev.off()
   Sys.sleep(2)
   
-  
-  # new cases not smoothed to monitor the today's number, f55, daily not 7d
+  # new cases not smoothed to monitor the today's number
   refVal = rev(stdat6$dif_cases)[1]
   refVal2 = rev(stdat6$dif_death)[1]
-  #ax2 = 0.8 * mean(stdat6$dif_cases, na.rm=T) / mean(stdat6$dif_death, na.rm=T)
+  
   ax2 = 1 * max(stdat6$dif_cases, na.rm=T) / max(stdat6$dif_death, na.rm=T)
   f55 <- ggplot(data = stdat6) +
     geom_line(aes(x = date, y = dif_cases, color='New cases'), alpha=0.5, size=1.5) +
     geom_point(aes(x = date, y = dif_cases), alpha=0.5, size=1.5, color=mpal[2]) +
     geom_line(aes(x = date, y = dif_death * ax2, color='New deaths' ), alpha=0.5, size=1.5) +
     geom_point(aes(x = date, y = dif_death * ax2 ), alpha=0.5, size=1.5, color=mpal[3]) +
-    #geom_line(aes(x = date, y = dif_recovered7), alpha=0.5, size=1.5, color=mpal[1]) +
-    #geom_point(aes(x = date, y = dif_recovered7), alpha=0.5, size=2, color=mpal[1]) +
-    
+
     scale_x_date(date_labels = "%b%d", date_minor_breaks = "1 week", date_breaks = "1 week") +
     theme_bw() +
     scale_y_continuous(name = "No. of Cases", labels = function(x) comma(x,0),
@@ -706,11 +611,7 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   dev.off()
   Sys.sleep(2)
   
-  
-  # infected
-  
-  ####
-  #### EstInfected, EstRecovered (initial) 
+  # EstInfected, EstRecovered (initial) 
   
   IFcoef = 1/ifr0
   IFcoefU = 1/ifrL
@@ -740,12 +641,9 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   stdat6$Erecovered = pmax( stdat6$Erecovered, tmpRec )
   stdat6$dif_Erecovered = c(NA, diff(stdat6$Erecovered))
   
-  
   r2 = stdat6$dif_Epositive / pmax(stdat6$dif_pos7, 0.5)    # 0.5, instead of 0
   r2[!is.finite(r2)] = NA
   
-  #weight14 = rep(1, 14)/14
-  #stdat6$r2_14 = filter(r2, weight14, 'convolution', sides = 1)
   stdat6$r2_7 = naFilter(r2, weight0)
   prj_newCases = stdat6$r2_7[numT-itod] * stdat6$dif_pos7[(numT-itod+1):numT]
   stdat6$dif_Epositive[(numT-itod+1):numT] = prj_newCases
@@ -767,7 +665,6 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   stdat6$Einfected = stdat6$Epositive - stdat6$death7 - stdat6$Erecovered
   stdat6$dif_Epositive = c(NA, diff(stdat6$Epositive))
   
-  
   # GR Einfected
   tmp = diff(stdat6$Einfected) / stdat6$Einfected[-nrow(stdat6)] * 100
   tmp[is.infinite(tmp) | (stdat6$Einfected[-nrow(stdat6)] < 20)] <- NA
@@ -788,11 +685,10 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   
   stdat6$dif7_gr_Erecovered = filter(stdat6$dif_gr_Erecovered, weight0, 
                                      'convolution', sides = 1)
-  ##
+  #
   stdat6$dif7_Epositive = filter(stdat6$dif_Epositive, weight0, 'convolution', sides=1) 
   stdat6$dif7_Erecovered = filter(stdat6$dif_Erecovered, weight0, 'convolution', sides=1) 
   
-  ####
   # new IR, 06/02 dif_dea7>0
   tmp = c(NA, stdat6$Einfected[1:(nrow(stdat6)-1)])
   stdat6$dailyDeathPerEinfected = stdat6$dif_dea7 / tmp * 100
@@ -808,15 +704,13 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   itstrt = which(stdat6$positive7 < stdat6$Epositive)[1]
   stdat6$NCC7PerEinfected[1:(itstrt)] = NaN
   
-  # 08/10
   tmp = c(NA, stdat6$Einfected[1:(nrow(stdat6)-1)])
   stdat6$difEposPerEinfected = stdat6$dif_Epositive / tmp * 100
   stdat6$difEposPerEinfected[stdat6$dif_pos7 == 0] = NaN
   itstrt = which(stdat6$positive7 < stdat6$Epositive)[1]
   stdat6$difEposPerEinfected[1:(itstrt)] = NaN
   
-  
-  ## 1d Case-Fatality-Rate, ECase-Fatality-Rate
+  # 1d Case-Fatality-Rate, ECase-Fatality-Rate
   id_gr10 = which(stdat6$death > 10)[1]
   stdat6$CFR = stdat6$death / stdat6$positive * 100
   stdat6$CFR[!is.finite(stdat6$CFR)] = NaN
@@ -842,20 +736,15 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   stdat6$CFRadj = stdat6$death7 / tmp * 100
   stdat6$CFRadj[c(1:(id_gr10-1))] = NaN
   
-  ##  05/14 update
-  ## Maximization of confirmRate7, reRate7
-  # wList..
+  # 05/14 update
+  # Maximization of confirmRate7, reRate7
   
   confirmRate = stdat6$dif_pos7 / pmax(stdat6$dif_Epositive, 1/7) * 100
   confirmRate[stdat6$dif_pos7 == 0] = NaN
   # from Galveston example, correct initial condition
   itstrt = which(stdat6$positive7 < stdat6$Epositive)[1]
   confirmRate[1:(itstrt)] = NaN
-  #stdat6$confirmRate7 = naFilter_2sides(confirmRate, weight16)
   stdat6$confirmRate_pre = confirmRate  
-  
-  #stdat6$recRate7 = naFilter_2sides(stdat6$dailyErecoveredPerEinfected, weight16)
-  #
   
   # infected, g3
   {
@@ -881,7 +770,6 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
                                     'Est-new cases' = mpal[2], 
                                     'Est-recovered' = mpal[1])) +
       guides(color = guide_legend(override.aes = list(alpha = c(.5, .2, .2, .5)))) # alphabetic order
-    
     
     g3out <- g3 + 
       labs(title = 'Initial Estimated Time Courses', x='', y='', 
@@ -1001,11 +889,11 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
     refLineVal = rev(stdat6$confirmRate_pre)[1]
     refLineVal2 = rev(stdat6$NCC7PerEinfected)[1]
     ax2 = 0.7 * mean(stdat6$confirmRate_pre, na.rm=T) / mean(stdat6$NCC7PerEinfected, na.rm=T)
-    #
+    
     mDR = mean(stdat6$confirmRate_pre, na.rm=T)
     sdDR = sd(stdat6$confirmRate_pre, na.rm=T)
     cvDR = sdDR/mDR * 100
-    ##
+    
     g2 <- ggplot(data = stdat6) +
       geom_line(aes(x = date, y = confirmRate_pre, color='Ascertainment rate'), alpha=0.5, size=1.5) +
       geom_point(aes(x = date, y = confirmRate_pre), alpha=0.5, size=1.5, color=mpal[3]) +
@@ -1050,7 +938,7 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
   # Est-transmission rate, g21
   { 
     refLineVal2 = rev(stdat6$difEposPerEinfected)[1] 
-    ##
+    
     g21 <- ggplot(data = stdat6) + 
       geom_line(aes(x = date, y = difEposPerEinfected  , color='Est-transmission rate' ), alpha=0.5, size=1.5) +
       geom_point(aes(x = date, y = difEposPerEinfected  ), alpha=0.5, size=1.5, color=mpal[1]) +
@@ -1088,7 +976,6 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
     Sys.sleep(2)
   }
   
-  
   # CFR, ECFR, g5
   {
     refLineVal = rev(stdat6$ECFR)[1]
@@ -1101,7 +988,6 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
     mDR = mean(stdat6$ECFR, na.rm=T)
     sdDR = sd(stdat6$ECFR, na.rm=T)
     cvDR = sdDR/mDR * 100
-    ##
     
     g5 <- ggplot(data = stdat6) +
       geom_line(aes(x = date, y = ECFR), alpha=0.5, size=1.5, color=mpal[3]) +
@@ -1147,101 +1033,86 @@ describe_df <- function(curDate, stname, stdat4, Xpop, outPath, outPath2,
     Sys.sleep(2)
   }
   
-  ####
-  #### Optimization with ma window sizes
-  
-  #spar0 = c(seq(-1, 2, by=0.3) )
-  spar01 = c(seq(0, 2, by=0.2) )
+  ## EM at combinations of smoothing parameters
+  ## start: Grid-computation over different spline smoothing parameters
+
+  spar01 = c(seq(0, 2, by=0.2) )      # spline smoothing param
   spar02 = c(seq(1, 2, by=0.05) )
   # outMat
-  #outMat = matrix(NA, 6, length(spar0))
   outMat = array(NA, dim = c(6, length(spar01), length(spar02)))
   
-for (i in 1:length(spar01)){
-  for (j in 1:length(spar02)){ 
-    
-    confirmRate = stdat6$dif_pos7 / pmax(stdat6$dif_Epositive, 1/7) * 100
-    confirmRate[stdat6$dif_pos7 == 0] = NaN
-    # from Galveston example, correct initial condition
-    itstrt = max( which(stdat6$positive7 < stdat6$Epositive)[1], 70)
-    confirmRate[1:(itstrt)] = NaN
-    #stdat6$confirmRate7 = naFilter_2sides(confirmRate, wList[[j]])
-    
-    stdat6$confirmRate_pre = confirmRate  
-    stdat6$Einfected_pre = stdat6$Einfected
-    stdat6$Epositive_pre = stdat6$Epositive
-    # plot(confirmRate, type='l')
-    
-    # EM iterations (itermax = 5000)
-    EMout <- EM_confirmRate_k(stdat6, spar01[i], spar02[j])
-    stdat6 = EMout$stdat6
-    k = EMout$k
-    cvDR = EMout$cvDR
-    
-    # lines(stdat6$confirmRate_k, col=2, lwd=4)
-    
-    if (k >= 2000){
-      print('== Not converged ==')
-      print(k)
-      print(rev(stdat6$Einfected_pre)[1])
-      print(rev(stdat6$Einfected_k)[1])
-      print(cvDR)
-      print(c(spar01[i], spar02[j]))
-      print('======')
-      # 09/02 revised
-      #stdat6$Epositive_k = rep(NA, numT)
-      #stdat6$Einfected_k = rep(NA, numT)
-    }  
-    
-    # outdf
-    TEC18dea7_Rate =  stdat6$death7[numT] / stdat6$Epositive_k[numT - itod] * 100
-    TECdea7_Rate =  stdat6$death7[numT] / stdat6$Epositive_k[numT] * 100
-    
-    outdf = data.frame(lastEinfected_k = stdat6$Einfected_k[numT], 
-                       mDR=NA, sdDR=NA, cvDR=cvDR, 
-                       TECdea7_Rate=TECdea7_Rate, TEC18dea7_Rate=TEC18dea7_Rate)
-    outMat[, i, j] = cbind(as.numeric(outdf))
-    
+  for (i in 1:length(spar01)){
+    for (j in 1:length(spar02)){ 
+      # confirmRate = Ascertainment rate
+      confirmRate = stdat6$dif_pos7 / pmax(stdat6$dif_Epositive, 1/7) * 100
+      confirmRate[stdat6$dif_pos7 == 0] = NaN
+      # from Galveston example, correct initial condition
+      itstrt = max( which(stdat6$positive7 < stdat6$Epositive)[1], 70)
+      confirmRate[1:(itstrt)] = NaN
+      
+      stdat6$confirmRate_pre = confirmRate  
+      stdat6$Einfected_pre = stdat6$Einfected
+      stdat6$Epositive_pre = stdat6$Epositive
+      # plot(confirmRate, type='l')
+      
+      # EM iterations (itermax = k)
+      EMout <- EM_confirmRate_k(stdat6, spar01[i], spar02[j])
+      stdat6 = EMout$stdat6
+      k = EMout$k
+      cvDR = EMout$cvDR
+      # lines(stdat6$confirmRate_k, col=2, lwd=4)
+      
+      if (k >= 2000){
+        print('== Not converged ==')
+        print(k)
+        print(rev(stdat6$Einfected_pre)[1])
+        print(rev(stdat6$Einfected_k)[1])
+        print(cvDR)
+        print(c(spar01[i], spar02[j]))
+        print('======')
+      }  
+      
+      # outdf
+      TEC18dea7_Rate =  stdat6$death7[numT] / stdat6$Epositive_k[numT - itod] * 100
+      TECdea7_Rate =  stdat6$death7[numT] / stdat6$Epositive_k[numT] * 100
+      
+      outdf = data.frame(lastEinfected_k = stdat6$Einfected_k[numT], 
+                         mDR=NA, sdDR=NA, cvDR=cvDR, 
+                         TECdea7_Rate=TECdea7_Rate, TEC18dea7_Rate=TEC18dea7_Rate)
+      outMat[, i, j] = cbind(as.numeric(outdf))
+    }
   }
-}
+  ## end: Grid-computation
   
+  # Select min of cvDR (coefficient of variation of Death Rate time series)
   
-  #### Optimization: end
-  
-  ## select min of cvDR
-  ##
   convId = !is.finite(outMat[1, , ])
   cvDRvec = outMat[4, , ]
   cvDRvec[convId] = NA
-  #ind = which.min(cvDRvec)
+
   ind = which(cvDRvec == min(cvDRvec), arr.ind = TRUE)
-  #spar00 = spar0[ind]
+
   # bug fix, 09/25
   spar00 = c(spar01[ind[nrow(ind),1]], spar02[ind[nrow(ind),2]])
   
-  
-  # again for plots with the selected parm
+  # With the selected param, run the EM again to define output variables
   confirmRate = stdat6$dif_pos7 / pmax(stdat6$dif_Epositive, 1/7) * 100
   confirmRate[stdat6$dif_pos7 == 0] = NaN
   # from Galveston example, correct initial condition
   itstrt = max( which(stdat6$positive7 < stdat6$Epositive)[1], 70)
   confirmRate[1:(itstrt)] = NaN
-  #stdat6$confirmRate7 = naFilter_2sides(confirmRate, wList0)
-  ## Iteration-2
+  #
   stdat6$confirmRate_pre = confirmRate  
   stdat6$Einfected_pre = stdat6$Einfected
   stdat6$Epositive_pre = stdat6$Epositive
-  
   # spar00
-  # EM iterations (itermax = 5000)
+  # EM iterations 
   EMout <- EM_confirmRate_k(stdat6, spar00[1], spar00[2])
   stdat6 = EMout$stdat6
   k = EMout$k
   cvDR = EMout$cvDR
-  
   # lines(stdat6$confirmRate_k, col=2, lwd=4)
-  
-  
+
   print('==')
   print(stname)
   print(k)
@@ -1252,8 +1123,8 @@ for (i in 1:length(spar01)){
   print('====')
   stdat6$dif_Epositive_k = c(NA, diff(stdat6$Epositive_k))
   
-  ## 
-  ## 2nd Round
+  ## 2nd Round of EM with 1st round output as initials to see if we get any improvements
+  ## 2nd Round: start
     
     stdat6$dif_Epositive_1st = stdat6$dif_Epositive_k
     stdat6$Einfected_1st = stdat6$Einfected_k
@@ -1264,92 +1135,76 @@ for (i in 1:length(spar01)){
     spar01 = c(seq(0, 2, by=0.2) )
     spar02 = c(seq(1, 2, by=0.05) )
     # outMat2
-    #outMat2 = matrix(NA, 6, length(spar0))
     outMat2 = array(NA, dim = c(6, length(spar01), length(spar02)))
     
-  for (i in 1:length(spar01)){
-    for (j in 1:length(spar02)){ 
-      
-      confirmRate = stdat6$dif_pos7 / pmax(stdat6$dif_Epositive_1st, 1/7) * 100
-      confirmRate[stdat6$dif_pos7 == 0] = NaN
-      # from Galveston example, correct initial condition
-      itstrt = max( which(stdat6$positive7 < stdat6$Epositive)[1], 70)
-      confirmRate[1:(itstrt)] = NaN
-      #stdat6$confirmRate7 = naFilter_2sides(confirmRate, wList[[j]])
-      ## Iteration-2
-      #stdat6$confirmRate_pre = stdat6$confirmRate7  
-      stdat6$confirmRate_pre = confirmRate  
-      stdat6$Einfected_pre = stdat6$Einfected_1st
-      stdat6$Epositive_pre = stdat6$Epositive_1st
-      # plot(confirmRate, type='l')
-      
-      # EM iterations (itermax = 5000)
-      EMout <- EM_confirmRate_k(stdat6, spar01[i], spar02[j])
-      stdat6 = EMout$stdat6
-      k = EMout$k
-      cvDR = EMout$cvDR
-      
-      # lines(stdat6$confirmRate_k, col=2, lwd=4)
-      
-      if (k >= 2000){
-        print('== Not converged ==')
-        print(k)
-        print(rev(stdat6$Einfected_pre)[1])
-        print(rev(stdat6$Einfected_k)[1])
-        print(cvDR)
-        #print(spar0[j])
-        print(c(spar01[i], spar02[j]))
-        print('======')
-        # 09/02 revised
-        #stdat6$Epositive_k = rep(NA, numT)
-        #stdat6$Einfected_k = rep(NA, numT)
-      }  
-      
-      # outdf
-      TEC18dea7_Rate =  stdat6$death7[numT] / stdat6$Epositive_k[numT - itod] * 100
-      TECdea7_Rate =  stdat6$death7[numT] / stdat6$Epositive_k[numT] * 100
-      
-      outdf = data.frame(lastEinfected_k = stdat6$Einfected_k[numT], 
-                         mDR=NA, sdDR=NA, cvDR=cvDR, 
-                         TECdea7_Rate=TECdea7_Rate, TEC18dea7_Rate=TEC18dea7_Rate)
-      outMat2[, i, j] = cbind(as.numeric(outdf))
-      
+    for (i in 1:length(spar01)){
+      for (j in 1:length(spar02)){ 
+        
+        confirmRate = stdat6$dif_pos7 / pmax(stdat6$dif_Epositive_1st, 1/7) * 100
+        confirmRate[stdat6$dif_pos7 == 0] = NaN
+        # from Galveston example, correct initial condition
+        itstrt = max( which(stdat6$positive7 < stdat6$Epositive)[1], 70)
+        confirmRate[1:(itstrt)] = NaN
+        
+        stdat6$confirmRate_pre = confirmRate  
+        stdat6$Einfected_pre = stdat6$Einfected_1st
+        stdat6$Epositive_pre = stdat6$Epositive_1st
+        # plot(confirmRate, type='l')
+        
+        # EM iterations (itermax = k)
+        EMout <- EM_confirmRate_k(stdat6, spar01[i], spar02[j])
+        stdat6 = EMout$stdat6
+        k = EMout$k
+        cvDR = EMout$cvDR
+        # lines(stdat6$confirmRate_k, col=2, lwd=4)
+        
+        if (k >= 2000){
+          print('== Not converged ==')
+          print(k)
+          print(rev(stdat6$Einfected_pre)[1])
+          print(rev(stdat6$Einfected_k)[1])
+          print(cvDR)
+          #print(spar0[j])
+          print(c(spar01[i], spar02[j]))
+          print('======')
+        }  
+        
+        # outdf
+        TEC18dea7_Rate =  stdat6$death7[numT] / stdat6$Epositive_k[numT - itod] * 100
+        TECdea7_Rate =  stdat6$death7[numT] / stdat6$Epositive_k[numT] * 100
+        
+        outdf = data.frame(lastEinfected_k = stdat6$Einfected_k[numT], 
+                           mDR=NA, sdDR=NA, cvDR=cvDR, 
+                           TECdea7_Rate=TECdea7_Rate, TEC18dea7_Rate=TEC18dea7_Rate)
+        outMat2[, i, j] = cbind(as.numeric(outdf))
+      }
     }
-  }
     
     
     ## select min of cvDR
-    ##
     convId = !is.finite(outMat2[1, , ])
     cvDRvec = outMat2[4, , ]
-    cvDRvec[convId] = NA 
-    #ind = which.min(cvDRvec)
-    ind = which(cvDRvec == min(cvDRvec), arr.ind = TRUE)
-    #spar00 = spar0[ind]
+    cvDRvec[convId] = NA  
+    ind = which(cvDRvec == min(cvDRvec), arr.ind = TRUE) 
     spar00 = c(spar01[ind[nrow(ind),1]], spar02[ind[nrow(ind),2]])
     
-    
-    # again for plots with the selected parm
+    # With the selected param, run the EM again to define output variables
     confirmRate = stdat6$dif_pos7 / pmax(stdat6$dif_Epositive_1st, 1/7) * 100
     confirmRate[stdat6$dif_pos7 == 0] = NaN
     # from Galveston example, correct initial condition
     itstrt = max( which(stdat6$positive7 < stdat6$Epositive)[1], 70)
-    confirmRate[1:(itstrt)] = NaN
-    #stdat6$confirmRate7 = naFilter_2sides(confirmRate, wList0)
-    ## Iteration-2
+    confirmRate[1:(itstrt)] = NaN 
+    
     stdat6$confirmRate_pre = confirmRate  
     stdat6$Einfected_pre = stdat6$Einfected_1st
     stdat6$Epositive_pre = stdat6$Epositive_1st
-    
     # spar00
     # EM iterations
     EMout <- EM_confirmRate_k(stdat6, spar00[1], spar00[2])
     stdat6 = EMout$stdat6
     k = EMout$k
     cvDR = EMout$cvDR
-    
     # lines(stdat6$confirmRate_k, col=4, lwd=4)
-    
     
     print('==')
     print(stname)
@@ -1371,10 +1226,7 @@ for (i in 1:length(spar01)){
   ##
   ## 2nd Round: end
     
-  ##  
-  ## 10/09 update: run EM with finer grids when the fit is poor. (x)
-  ## 2021/3/25 if 2nd run is worse, then the 1st run is used. 
-
+  ## if 2nd run is worse, then the 1st run is used
   if (cvDR_1st < cvDR){
     stdat6$dif_Epositive_k = stdat6$dif_Epositive_1st
     stdat6$Einfected_k = stdat6$Einfected_1st
@@ -1382,14 +1234,11 @@ for (i in 1:length(spar01)){
 
     print('==')
     print(stname)
-    # print(k)
-    # print(rev(stdat6$Einfected_pre)[1])
     print(rev(stdat6$Einfected_k)[1])
     print(cvDR_1st)
     print(spar00)
     print('====')
     stdat6$dif_Epositive_k = c(NA, diff(stdat6$Epositive_k))
-    
     # 08/10
     tmp = c(NA, stdat6$Einfected_k[1:(nrow(stdat6)-1)])
     stdat6$difEposPerEinfected_k = stdat6$dif_Epositive_k / tmp * 100
@@ -1398,96 +1247,15 @@ for (i in 1:length(spar01)){
     stdat6$difEposPerEinfected_k[1:(itstrt)] = NaN
   }
 
-
-
-
-
-  if (FALSE){
-    # re-optimization 
-    spar01 = c(seq(0, 2, by=0.4) )
-    spar02 = c(seq(1.01, 2, by=0.01) ) 
-    outMat = array(NA, dim = c(6, length(spar01), length(spar02)))
-    
-    for (i in 1:length(spar01)){
-      for (j in 1:length(spar02)){ 
-        
-        confirmRate = stdat6$dif_pos7 / pmax(stdat6$dif_Epositive, 1/7) * 100
-        confirmRate[stdat6$dif_pos7 == 0] = NaN
-        # from Galveston example, correct initial condition
-        itstrt = max( which(stdat6$positive7 < stdat6$Epositive)[1], 70)
-        confirmRate[1:(itstrt)] = NaN
-        #stdat6$confirmRate7 = naFilter_2sides(confirmRate, wList[[j]])
-        
-        stdat6$confirmRate_pre = confirmRate  
-        stdat6$Einfected_pre = stdat6$Einfected
-        stdat6$Epositive_pre = stdat6$Epositive
-        # plot(confirmRate, type='l')
-        
-        # EM iterations (itermax = 5000)
-        EMout <- EM_confirmRate_k(stdat6, spar01[i], spar02[j])
-        stdat6 = EMout$stdat6
-        k = EMout$k
-        cvDR = EMout$cvDR
-        
-        # lines(stdat6$confirmRate_k, col=2, lwd=4)
-        
-        if (k >= 2000){
-          print('== Not converged ==')
-          print(k)
-          print(rev(stdat6$Einfected_pre)[1])
-          print(rev(stdat6$Einfected_k)[1])
-          print(cvDR)
-          print(c(spar01[i], spar02[j]))
-          print('======')
-          # 09/02 revised
-          #stdat6$Epositive_k = rep(NA, numT)
-          #stdat6$Einfected_k = rep(NA, numT)
-        }  
-        
-        # outdf
-        TEC18dea7_Rate =  stdat6$death7[numT] / stdat6$Epositive_k[numT - itod] * 100
-        TECdea7_Rate =  stdat6$death7[numT] / stdat6$Epositive_k[numT] * 100
-        
-        outdf = data.frame(lastEinfected_k = stdat6$Einfected_k[numT], 
-                           mDR=NA, sdDR=NA, cvDR=cvDR, 
-                           TECdea7_Rate=TECdea7_Rate, TEC18dea7_Rate=TEC18dea7_Rate)
-        outMat[, i, j] = cbind(as.numeric(outdf))
-        
-      }
-    }
-    
-    ## select min of cvDR 
-    convId = !is.finite(outMat[1, , ])
-    cvDRvec = outMat[4, , ]
-    cvDRvec[convId] = NA
-    #ind = which.min(cvDRvec)
-    ind = which(cvDRvec == min(cvDRvec), arr.ind = TRUE)
-    #spar00 = spar0[ind]
-    # bug fix, 09/25
-    spar00 = c(spar01[ind[nrow(ind),1]], spar02[ind[nrow(ind),2]])
-    
-  }
-    
-    
-    
-    
+  ## 10/09 update: run EM with finer grids when the fit is poor -> deprecated 
   
   ##  
-  ## Confidence interval
-  # 09/22
+  ## Confidence interval # 09/22
+    
   confirmRate_L0 = initialConfirmRate(stdat6, IFcoefU, itod, dtor)
   (mL = mean(confirmRate_L0, na.rm = T)); (m_k = mean(stdat6$confirmRate_k, na.rm = T))
   stdat6$confirmRate_k_L = pmax(stdat6$confirmRate_k * min(mL/m_k, 0.95), 0.5)
-  
-  # lines(stdat6$confirmRate_k_L, col=2); lines(stdat6$confirmRate_k_U, col=3)
-    
-  #stdat6$confirmRate_k_L = pmax(stdat6$confirmRate_k * ifrL/ifr0, 0.5)
   stdat6$confirmRate_k_U = pmin(stdat6$confirmRate_k * ifrU/ifr0, 99)
-  
-  #tmp = stdat6$death7[2:(numT-dtor)] * (IFcoefU - 1)
-  #stdat6$Erecovered_U = c(rep(0, (dtor+1)), tmp)
-  #tmp2 = stdat6$death7[2:(numT-dtor)] * (IFcoefL - 1)
-  #stdat6$Erecovered_L = c(rep(0, (dtor+1)), tmp2)
   
   outU = CI_Estep(stdat6, stdat6$confirmRate_k_L, IFcoefU, itod, dtor)
   stdat6$Epositive_U = outU$Epositive_k
@@ -1507,7 +1275,6 @@ for (i in 1:length(spar01)){
   
   ## CI: end
   
-  
   # confirmRate7, d2
   {
     refLineVal = rev(stdat6$confirmRate_k)[1]
@@ -1517,7 +1284,7 @@ for (i in 1:length(spar01)){
     mDR = mean(stdat6$confirmRate_k, na.rm=T)
     sdDR = sd(stdat6$confirmRate_k, na.rm=T)
     cvDR = sdDR/mDR * 100
-    ##
+
     gg2 <- ggplot(data = stdat6) +
       geom_line(aes(x = date, y = confirmRate_k, color='Ascertainment rate'), alpha=0.5, size=1.5) +
       geom_point(aes(x = date, y = confirmRate_k), alpha=0.5, size=1.5, color=mpal[3]) +
@@ -1559,10 +1326,11 @@ for (i in 1:length(spar01)){
     dev.off()
     Sys.sleep(2)
   }      
+  
   # confirmRate7 only, ggg2
   {
     refLineVal = rev(stdat6$confirmRate_k)[1]
-    ##
+
     ggg2 <- ggplot(data = stdat6) +
       geom_line(aes(x = date, y = confirmRate_k, color='Ascertainment rate'), alpha=0.5, size=1.5) +
       geom_point(aes(x = date, y = confirmRate_k), alpha=0.5, size=1.5, color=mpal[3]) +
@@ -1599,11 +1367,10 @@ for (i in 1:length(spar01)){
     Sys.sleep(2)
   } 
   
-  
   # Est-transmission rate, gg21
   { 
     refLineVal2 = rev(stdat6$difEposPerEinfected_k)[1] 
-    ##
+
     gg21 <- ggplot(data = stdat6) + 
       geom_line(aes(x = date, y = difEposPerEinfected_k  , color='Est-transmission rate' ), alpha=0.5, size=1.5) +
       geom_point(aes(x = date, y = difEposPerEinfected_k  ), alpha=0.5, size=1.5, color=mpal[1]) +
@@ -1641,9 +1408,8 @@ for (i in 1:length(spar01)){
     Sys.sleep(2)
   }
   
-  
   # daily death per Einfected, gg1
-  # 08/23 rstudio
+  # deprecated
   tmpftn <- function(){
   {
     refLineVal = rev(stdat6$dailyDeathPerEinfected_k)[1]
@@ -1694,7 +1460,6 @@ for (i in 1:length(spar01)){
   }
   }
   
-  
   # daily death per Einfected, gg11
   {
     refLineVal = rev(stdat6$dailyDeathPerEinfected_k)[1]
@@ -1704,15 +1469,12 @@ for (i in 1:length(spar01)){
     mDR = mean(stdat6$dailyDeathPerEinfected_k, na.rm=T)
     sdDR = sd(stdat6$dailyDeathPerEinfected_k, na.rm=T)
     cvDR = sdDR/mDR * 100
-    ##
+
     gg11 <- ggplot(data = stdat6) +
       geom_line(aes(x = date, y = dailyDeathPerEinfected_k), alpha=0.5, size=1.5, color=mpal[3]) +
       geom_point(aes(x = date, y = dailyDeathPerEinfected_k), alpha=0.5, size=1.5, color=mpal[3]) +
       geom_hline(yintercept = refLineVal, color = mpal[3]) +
-      #geom_line(aes(x = date, y = dailyRecoveredPerEinfected_k * ax2 ), alpha=0.5, size=1.5, color=mpal[1]) +
-      #geom_point(aes(x = date, y = dailyRecoveredPerEinfected_k * ax2 ), alpha=0.5, size=2, color=mpal[1]) +
-      #geom_hline(yintercept = refLineVal2 * ax2, color = mpal[1]) +
-      
+       
       scale_x_date(date_labels = "%b%d", date_minor_breaks = "1 week", date_breaks = "1 week") +
       theme_bw() +
       scale_y_continuous(name = "Percentage")
@@ -1744,7 +1506,6 @@ for (i in 1:length(spar01)){
     Sys.sleep(2)
   }
   
-  
   # infected, d3
   dif_Epos_k3 = c(NA, diff(stdat6$Epositive_k))
   {
@@ -1760,8 +1521,6 @@ for (i in 1:length(spar01)){
       geom_point(aes(x = date, y = dif_Epos_k3 * ax2 ), alpha=0.2, size=1.5, color=mpal[2]) +
       geom_line(aes(x = date, y = dif_Erecovered * ax2, color='Est-recovered' ), alpha=0.2, size=1.5) +
       geom_point(aes(x = date, y = dif_Erecovered * ax2 ), alpha=0.2, size=1.5, color=mpal[1]) +
-      #geom_line(aes(x = date, y = Einfected_U), alpha=0.5, size=1, color = 'purple2') +
-      #geom_line(aes(x = date, y = Einfected_L), alpha=0.5, size=1, color = 'purple2') +
       
       scale_x_date(date_labels = "%b%d", date_minor_breaks = "1 week", date_breaks = "1 week") +
       theme_bw() +
@@ -1800,7 +1559,6 @@ for (i in 1:length(spar01)){
     Sys.sleep(2)
   }
   
-  
   # infected vs new death, gg4
   {
     refVal = rev(stdat6$Einfected_k)[1]
@@ -1814,11 +1572,12 @@ for (i in 1:length(spar01)){
     mDR = mean(stdat6$dailyDeathPerEinfected_k, na.rm=T)
     sdDR = sd(stdat6$dailyDeathPerEinfected_k, na.rm=T)
     cvDR = sdDR/mDR * 100
-	if (cvDR < 100){
-		captionCVDR = paste0('CV of daily death rates (', round(cvDR,0), '% < 100%) suggests the estimation quality is good.')
-	} else {
-		captionCVDR = paste0('CV of daily death rates (', round(cvDR,0), '% > 100%) suggests the estimation quality is poor.')
-	}
+    
+  	if (cvDR < 100){
+  		captionCVDR = paste0('CV of daily death rates (', round(cvDR,0), '% < 100%) suggests the estimation quality is good.')
+  	} else {
+  		captionCVDR = paste0('CV of daily death rates (', round(cvDR,0), '% > 100%) suggests the estimation quality is poor.')
+  	}
     
     gg4 <- ggplot(data = stdat6) +
       geom_ribbon(aes(x = date, ymax = Einfected_U, ymin = Einfected_L), fill='purple1', alpha=0.1) +
@@ -1879,14 +1638,13 @@ for (i in 1:length(spar01)){
     mDR = mean(stdat6$dailyDeathPerEinfected_k, na.rm=T)
     sdDR = sd(stdat6$dailyDeathPerEinfected_k, na.rm=T)
     cvDR = sdDR/mDR * 100
-	if (cvDR < 100){
-		captionCVDR = paste0('CV of daily death rates (', round(cvDR,0), '% < 100%) suggests the estimation quality is good.')
-	} else {
-		captionCVDR = paste0('CV of daily death rates (', round(cvDR,0), '% > 100%) suggests the estimation quality is poor.')
-	}
     
-    
-    #ax2 = 0.8 * mean(stdat6$Einfected_k, na.rm=T) / mean(dif_Epos_k3, na.rm=T)
+  	if (cvDR < 100){
+  		captionCVDR = paste0('CV of daily death rates (', round(cvDR,0), '% < 100%) suggests the estimation quality is good.')
+  	} else {
+  		captionCVDR = paste0('CV of daily death rates (', round(cvDR,0), '% > 100%) suggests the estimation quality is poor.')
+  	}
+      
     gg33 <- ggplot(data = stdat6) +
       geom_ribbon(aes(x = date, ymax = dif_Epositive_U, ymin = dif_Epositive_L), fill=mpal[2], alpha=0.1) +
       geom_line(aes(x = date, y = dif_pos7, color='Confirmed new cases' ), alpha=0.5, size=1.5) +
@@ -1932,8 +1690,7 @@ for (i in 1:length(spar01)){
     Sys.sleep(2)
   }  
   
-  
-  ## 7d Case-Fatality-Rate, ECase-Fatality-Rate
+  # 7d Case-Fatality-Rate, ECase-Fatality-Rate
   id_gr10 = which(stdat6$death > 10)[1] 
   
   stdat6$ECFR_k = stdat6$death / stdat6$Epositive_k * 100
@@ -1948,7 +1705,6 @@ for (i in 1:length(spar01)){
   tmp = c(rep(NA, itod), stdat6$Epositive_k[1:(numT - itod)])
   stdat6$EIFRadj_k = stdat6$death / tmp * 100
   
-  
   # CFR, ECFR, gg44
   {
     refLineVal = rev(stdat6$ECFR_k)[1]
@@ -1961,8 +1717,7 @@ for (i in 1:length(spar01)){
     mDR = mean(stdat6$ECFR_k, na.rm=T)
     sdDR = sd(stdat6$ECFR_k, na.rm=T)
     cvDR = sdDR/mDR * 100
-    ##
-    
+
     gg44 <- ggplot(data = stdat6) +
       geom_line(aes(x = date, y = ECFR_k), alpha=0.5, size=1.5, color=mpal[3]) +
       geom_point(aes(x = date, y = ECFR_k), alpha=0.5, size=2, color=mpal[3]) +
@@ -2008,12 +1763,11 @@ for (i in 1:length(spar01)){
   }
   
   print(rev(stdat6$Einfected_k)[1])
-  
-  ##
-  ##  Recent 4 week plots of Infections, New Cases
-  
+
+  # Recent 4 week plots of Infections, New Cases
+
   rctdat = stdat6[(numT-55):numT, ]
-  
+
   # infected, d3
   {
     refVal = rev(rctdat$Einfected_k)[1]
@@ -2028,9 +1782,7 @@ for (i in 1:length(spar01)){
       geom_point(aes(x = date, y = dif_Epositive_k * ax2 ), alpha=0.2, size=1.5, color=mpal[2]) +
       geom_line(aes(x = date, y = dif_Erecovered * ax2, color='Est-recovered' ), alpha=0.2, size=1.5) +
       geom_point(aes(x = date, y = dif_Erecovered * ax2 ), alpha=0.2, size=1.5, color=mpal[1]) +
-      #geom_line(aes(x = date, y = Einfected_U), alpha=0.5, size=1, color = 'purple2') +
-      #geom_line(aes(x = date, y = Einfected_L), alpha=0.5, size=1, color = 'purple2') +
-      
+       
       scale_x_date(date_labels = "%b%d", date_minor_breaks = "1 week", date_breaks = "1 week") +
       theme_bw() +
       scale_y_continuous(name = "No. of Infected Cases", labels = function(x) comma(x,0),
@@ -2067,7 +1819,6 @@ for (i in 1:length(spar01)){
     dev.off()
     Sys.sleep(2)
   }
-  
   
   # infected vs new death, gg4
   {
@@ -2126,7 +1877,6 @@ for (i in 1:length(spar01)){
     Sys.sleep(2)
   }
   
-  
   # CI Est new cases
   {
     refVal = rev(rctdat$dif_Epositive_k)[1]
@@ -2180,15 +1930,11 @@ for (i in 1:length(spar01)){
     Sys.sleep(2)
   }    
   
-  
-  
-  ##
   ## update from EM
   
   stdat6$Einfected = stdat6$Einfected_k
   stdat6$Epositive = stdat6$Epositive_k 
   stdat6$dif_Epositive = c(NA, diff(stdat6$Epositive))
-  
   
   # GR Einfected, 06/02 (from < 20 => < 1 => < 20, 07/31)
   tmp = diff(stdat6$Einfected) / stdat6$Einfected[-nrow(stdat6)] * 100
@@ -2214,7 +1960,6 @@ for (i in 1:length(spar01)){
   stdat6$dif7_Epositive = filter(stdat6$dif_Epositive, weight0, 'convolution', sides=1) 
   stdat6$dif7_Erecovered = filter(stdat6$dif_Erecovered, weight0, 'convolution', sides=1) 
   
-  ####
   # new IR
   tmp = c(NA, stdat6$Einfected[1:(nrow(stdat6)-1)])
   stdat6$dailyDeathPerEinfected = stdat6$dif_dea7 / tmp * 100
@@ -2223,186 +1968,6 @@ for (i in 1:length(spar01)){
   stdat6$dailyErecoveredPerEinfected = stdat6$dif_Erecovered / tmp * 100
   tmp = c(NA, stdat6$Einfected[1:(nrow(stdat6)-1)])
   stdat6$NCC7PerEinfected = stdat6$dif_pos7 / tmp * 100
-  
-  
-  ## 05/14
-  ##
-  ##
-  
-  grplots <- function()  {
-    # gr_infected2, dif_gr_infected2
-    refLineVal = rev(stdat6$gr_Einfected)[1]
-    refLineVal2 = rev(stdat6$dif_gr_Einfected)[1]
-    a = mean(stdat6$gr_Einfected, na.rm=T)
-    #ax2 = 0.8 * a / mean(stdat6$dif_gr_infected2, na.rm=T)
-    
-    gg5 <- ggplot(data = stdat6) +
-      geom_line(aes(x = date, y = gr_Einfected), alpha=0.5, size=1.5, color='purple3') +
-      geom_point(aes(x = date, y = gr_Einfected), alpha=0.5, size=2, color='purple3') +
-      geom_hline(yintercept = refLineVal, color = 'purple3') +
-      geom_line(aes(x = date, y = dif_gr_Einfected + a  ), alpha=0.5, size=1.5, color='green3') +
-      geom_point(aes(x = date, y = dif_gr_Einfected + a   ), alpha=0.5, size=2, color='green3') +
-      geom_hline(yintercept = refLineVal2 + a , color = mpal[5]) +
-      geom_hline(yintercept = 0  , color = 'black') +
-      geom_hline(yintercept = 0 + a  , color = 'black') +
-      
-      scale_x_date(date_labels = "%b%d", date_minor_breaks = "1 week", date_breaks = "1 week") +
-      theme_bw() +
-      scale_y_continuous(name = "Grwoth Rate (%)", 
-                         sec.axis = sec_axis(~. - a, name='Diff of Growth Rate (%)'))
-    gg5out <- gg5 + 
-      #coord_cartesian(ylim = c(-10, 20)) +
-      labs(title = paste('(Diff of) Growth Rate of Est-Infections,', round(refLineVal, 1), round(refLineVal2,1)),
-           x='', y='Percentage', 
-           subtitle = paste0(stname, ', as of ', curDate)) + 
-      theme(plot.title = element_text(hjust = 0.5, size=rel(1.7)),  
-            plot.subtitle = element_text(size=rel(1.3)),
-            axis.text = element_text(size = rel(1)),
-          axis.text.x = element_text(angle = 60, hjust = 1, size = rel(0.7)), 
-            axis.text.y = element_text(color = 'purple3'), 
-            axis.text.y.right = element_text(color = 'green3'), 
-            axis.title = element_text(size=rel(1.5)), 
-            axis.title.y = element_text(color='purple3'), 
-            axis.title.y.right = element_text(color='green3'),
-            legend.position = 'top', legend.title = element_text(size= rel(1)), 
-            legend.text = element_text(size = rel(1)))
-    print(gg5out)
-    gg5name = paste0(stname, '_gg5.png')
-    png(file.path(outPath, gg5name), width=8, height=4, units = "in", res=300)
-    Sys.sleep(2)
-    print(gg5out)
-    Sys.sleep(2)
-    dev.off()
-    Sys.sleep(2)
-    
-    # gr_infected2, dif_gr_infected2
-    refLineVal = rev(stdat6$gr7_Einfected)[1]
-    refLineVal2 = rev(stdat6$dif7_gr_Einfected)[1]
-    a =  mean(stdat6$gr7_Einfected, na.rm=T) #/ mean(stdat6$gr_positive2, na.rm=T)
-    #b = 0.8 * sd(stdat6$dif7_gr_infected2, na.rm=T) / sd(stdat6$gr7_infected2, na.rm=T)
-    
-    gg6 <- ggplot(data = stdat6) +
-      geom_line(aes(x = date, y = gr7_Einfected), alpha=0.5, size=1.5, color='purple3') +
-      geom_point(aes(x = date, y = gr7_Einfected), alpha=0.5, size=2, color='purple3') +
-      geom_hline(yintercept = refLineVal, color = 'purple3') +
-      geom_line(aes(x = date, y = dif7_gr_Einfected + a ), alpha=0.5, size=1.5, color='green3') +
-      geom_point(aes(x = date, y = dif7_gr_Einfected + a   ), alpha=0.5, size=2, color='green3') +
-      geom_hline(yintercept = refLineVal2 + a  , color = 'green3') +
-      geom_hline(yintercept = 0 + a  , color = 'black') +
-      geom_hline(yintercept = 0   , color = 'black') +
-      
-      scale_x_date(date_labels = "%b%d", date_minor_breaks = "1 week", date_breaks = "1 week") +
-      theme_bw() +
-      scale_y_continuous(name = "Grwoth Rate (%)", 
-                         sec.axis = sec_axis(~. - a, name='Diff of Growth Rate (%)'))
-    gg6out <- gg6 + 
-      #coord_cartesian(ylim = c(-10, 20)) +
-      labs(title = paste('(Diff of) Growth Rate of Est-Infections (7-day avg),', round(refLineVal, 1), round(refLineVal2,1)),
-           x='', y='Percentage', 
-           subtitle = paste0(stname, ', as of ', curDate)) + 
-      theme(plot.title = element_text(hjust = 0.5, size=rel(1.7)),  
-            plot.subtitle = element_text(size=rel(1.3)),
-            axis.text = element_text(size = rel(1)),
-          axis.text.x = element_text(angle = 60, hjust = 1, size = rel(0.7)), 
-            axis.text.y = element_text(color = 'purple3'), 
-            axis.text.y.right = element_text(color = 'green3'), 
-            axis.title = element_text(size=rel(1.5)), 
-            axis.title.y = element_text(color='purple3'), 
-            axis.title.y.right = element_text(color='green3'),
-            legend.position = 'top', legend.title = element_text(size= rel(1)), 
-            legend.text = element_text(size = rel(1)))
-    print(gg6out)
-    gg6name = paste0(stname, '_gg6.png')
-    png(file.path(outPath, gg6name), width=8, height=4, units = "in", res=300)
-    Sys.sleep(2)
-    print(gg6out)
-    Sys.sleep(2)
-    dev.off()
-    Sys.sleep(2)
-    
-    
-    # GRs  Einfected
-    gg7 <- ggplot(data = stdat6) +
-      geom_line(aes(x = date, y = gr7_Einfected), alpha=0.5, size=1.5, color='purple3') +
-      geom_point(aes(x = date, y = gr7_Einfected), alpha=0.5, size=2, color='purple3') +
-      #geom_hline(yintercept = refLineVal, color = 'blue') +
-      geom_line(aes(x = date, y = gr7_death2  ), alpha=0.5, size=1.5, color=mpal[3]) +
-      geom_point(aes(x = date, y = gr7_death2    ), alpha=0.5, size=2, color=mpal[3]) +
-      #geom_line(aes(x = date, y = gr7_Erecovered   ), alpha=0.5, size=1.5, color=mpal[1]) +
-      #geom_point(aes(x = date, y = gr7_Erecovered    ), alpha=0.5, size=2, color=mpal[1]) +
-      
-      geom_hline(yintercept = 0  , color = 'black') + 
-      
-      scale_x_date(date_labels = "%b%d", date_minor_breaks = "1 week", date_breaks = "1 week") +
-      theme_bw() +
-      scale_y_continuous(name = "GR of Est-Infected Cases (%)", 
-                         sec.axis = sec_axis(~. , name='GR of Deaths (%)'))
-    gg7out <- gg7 + 
-      #coord_cartesian(ylim = c(-10, 20)) +
-      labs(title = paste('Growth Rates of Est-Infections/Total Deaths (7-d avg)'), 
-           x='', y='', 
-           subtitle = paste0(stname, ', as of ', curDate)) + 
-      theme(plot.title = element_text(hjust = 0.5, size=rel(1.7)),  
-            plot.subtitle = element_text(size=rel(1.3)),
-            axis.text = element_text(size = rel(1)),
-          axis.text.x = element_text(angle = 60, hjust = 1, size = rel(0.7)), 
-            axis.text.y = element_text(color = 'purple3'), 
-            axis.text.y.right = element_text(color = mpal[3]), 
-            axis.title = element_text(size=rel(1.3)), 
-            axis.title.y = element_text(color='purple3'), 
-            axis.title.y.right = element_text(color=mpal[3]),
-            legend.position = 'top', legend.title = element_text(size= rel(1)), 
-            legend.text = element_text(size = rel(1)))
-    print(gg7out)
-    gg7name = paste0(stname, '_gg7.png')
-    png(file.path(outPath, gg7name), width=8, height=4, units = "in", res=300)
-    Sys.sleep(2)
-    print(gg7out)
-    Sys.sleep(2)
-    dev.off()
-    Sys.sleep(2)
-    
-    # Dif7 GRs
-    gg8 <- ggplot(data = stdat6) +
-      geom_line(aes(x = date, y = dif7_gr_Einfected), alpha=0.5, size=1.5, color='green3') +
-      geom_point(aes(x = date, y = dif7_gr_Einfected), alpha=0.5, size=2, color='green3') +
-      #geom_hline(yintercept = refLineVal, color = 'blue') +
-      geom_line(aes(x = date, y = dif7_gr_death2  ), alpha=0.5, size=1.5, color=mpal[3]) +
-      geom_point(aes(x = date, y = dif7_gr_death2    ), alpha=0.5, size=2, color=mpal[3]) +
-      #geom_line(aes(x = date, y = dif7_gr_Erecovered   ), alpha=0.5, size=1.5, color=mpal[1]) +
-      #geom_point(aes(x = date, y = dif7_gr_Erecovered    ), alpha=0.5, size=2, color=mpal[1]) +
-      
-      geom_hline(yintercept = 0  , color = 'black') + 
-      
-      scale_x_date(date_labels = "%b%d", date_minor_breaks = "1 week", date_breaks = "1 week") +
-      theme_bw() +
-      scale_y_continuous(name = "Diff-GR of Est-Infected Cases (%)", 
-                         sec.axis = sec_axis(~. , name='Diff-GR of Deaths (%)'))
-    gg8out <- gg8 + 
-      #coord_cartesian(ylim = c(-5, 5)) +
-      labs(title = paste('Diff of GRs of Est-Infections/Total Deaths (7-d avg),', round(refLineVal, 1), round(refLineVal2,1)),
-           x='', y='Percentage', 
-           subtitle = paste0(stname, ', as of ', curDate)) + 
-      theme(plot.title = element_text(hjust = 0.5, size=rel(1.7)),  
-            plot.subtitle = element_text(size=rel(1.3)),
-            axis.text = element_text(size = rel(1)),
-          axis.text.x = element_text(angle = 60, hjust = 1, size = rel(0.7)), 
-            axis.text.y = element_text(color = 'green3'), 
-            axis.text.y.right = element_text(color = mpal[3]), 
-            axis.title = element_text(size=rel(1.3)), 
-            axis.title.y = element_text(color='green3'), 
-            axis.title.y.right = element_text(color=mpal[3]),
-            legend.position = 'top', legend.title = element_text(size= rel(1)), 
-            legend.text = element_text(size = rel(1)))
-    print(gg8out)
-    gg8name = paste0(stname, '_gg8.png')
-    png(file.path(outPath, gg8name), width=8, height=4, units = "in", res=300)
-    Sys.sleep(2)
-    print(gg8out)
-    Sys.sleep(2)
-    dev.off()
-    Sys.sleep(2)
-  }
   
   # ccf
   tryCatch( {
@@ -2423,8 +1988,7 @@ for (i in 1:length(spar01)){
     dev.off()
     Sys.sleep(2)
   }, error = function(e) print(paste0('CCF the second Error for ', stname)))
-  
-  
+ 
   # recent GRs
   numT = nrow(stdat6)
   rctdat = stdat6[(numT-55):numT, ]
@@ -2432,12 +1996,8 @@ for (i in 1:length(spar01)){
   gg9 <- ggplot(data = rctdat) +
     geom_line(aes(x = date, y = gr_Einfected), alpha=0.5, size=1.5, color='purple3') +
     geom_point(aes(x = date, y = gr_Einfected), alpha=0.5, size=2, color='purple3') +
-    #geom_hline(yintercept = refLineVal, color = 'blue') +
     geom_line(aes(x = date, y = gr_death2  ), alpha=0.5, size=1.5, color=mpal[3]) +
     geom_point(aes(x = date, y = gr_death2    ), alpha=0.5, size=2, color=mpal[3]) +
-    #geom_line(aes(x = date, y = gr_Erecovered   ), alpha=0.5, size=1.5, color=mpal[1]) +
-    #geom_point(aes(x = date, y = gr_Erecovered    ), alpha=0.5, size=2, color=mpal[1]) +
-    
     geom_hline(yintercept = 0  , color = 'black') + 
     
     scale_x_date(date_labels = "%b%d", date_minor_breaks = "1 week", date_breaks = "1 week") +
@@ -2445,7 +2005,6 @@ for (i in 1:length(spar01)){
     scale_y_continuous(name = "GR of Est-Infected Cases (%)", 
                        sec.axis = sec_axis(~. , name='GR of Deaths (%)'))
   gg9out <- gg9 + 
-    #coord_cartesian(ylim = c(-10, 20)) +
     labs(title = paste('Growth Rates of Est-Infections/Total Deaths'), 
          x='', y='Percentage', 
          subtitle = paste0(stname, ', as of ', curDate)) +  
@@ -2468,8 +2027,7 @@ for (i in 1:length(spar01)){
   Sys.sleep(2)
   dev.off()
   Sys.sleep(2)
-  
-  
+
   # recent Dif GRs Einfected
   numT = nrow(stdat6)
   rctdat = stdat6[(numT-55):numT, ]
@@ -2477,12 +2035,8 @@ for (i in 1:length(spar01)){
   gg10 <- ggplot(data = rctdat) +
     geom_line(aes(x = date, y = dif_gr_Einfected), alpha=0.5, size=1.5, color='green3') +
     geom_point(aes(x = date, y = dif_gr_Einfected), alpha=0.5, size=2, color='green3') +
-    #geom_hline(yintercept = refLineVal, color = 'blue') +
     geom_line(aes(x = date, y = dif_gr_death2  ), alpha=0.5, size=1.5, color=mpal[3]) +
     geom_point(aes(x = date, y = dif_gr_death2    ), alpha=0.5, size=2, color=mpal[3]) +
-    #geom_line(aes(x = date, y = dif_gr_Erecovered   ), alpha=0.5, size=1.5, color=mpal[1]) +
-    #geom_point(aes(x = date, y = dif_gr_Erecovered    ), alpha=0.5, size=2, color=mpal[1]) +
-    
     geom_hline(yintercept = 0  , color = 'black') + 
     
     scale_x_date(date_labels = "%b%d", date_minor_breaks = "1 week", date_breaks = "1 week") +
@@ -2490,7 +2044,6 @@ for (i in 1:length(spar01)){
     scale_y_continuous(name = "Diff-GR of Est-Infected Cases (%)", 
                        sec.axis = sec_axis(~. , name='Diff-GR of Deaths (%)'))
   gg10out <- gg10 + 
-    #coord_cartesian(ylim = c(-10, 20)) +
     labs(title = paste('Diff of GRs of Est-Infections/Total Deaths'), 
          x='', y='Percentage', 
          subtitle = paste0(stname, ', as of ', curDate)) + 
@@ -2514,18 +2067,13 @@ for (i in 1:length(spar01)){
   dev.off()
   Sys.sleep(2)
   
-  ## rr
+  # rr
   rr = rctdat$gr_Einfected
   acf(rr, ylim=c(-1,1))
   aa = rctdat$dif_gr_Einfected
   acf(aa, ylim=c(-1,1))
-  
-  
-  ####
-  ####  new figures 2
-  ##  pie(rep(1, 7), col = rainbow(7))
-  
-  #mpal = rainbow(7)
+
+  ## new figures 2
   mpal = wes_palette("BottleRocket2", 5)
   
   {
@@ -2578,7 +2126,6 @@ for (i in 1:length(spar01)){
     Sys.sleep(2)
   }
   
-  
   # dual y axes
   {
     ax2 = 0.8 * mean(stdat6$dif_pos7, na.rm=T) / mean(stdat6$dif_dea7, na.rm=T)
@@ -2624,7 +2171,6 @@ for (i in 1:length(spar01)){
     dev.off()
     Sys.sleep(2)
   }
-  
   
   # 08/12, est-daily-prevalence
   ## 08/12, daily prevalence
@@ -2673,9 +2219,7 @@ for (i in 1:length(spar01)){
     Sys.sleep(2)
   }
   
-  
   # total case, 08/20
-  
   {
     pp = 1/Xpop * 10^6 
     curTC = rev(stdat4$positive)[1]
@@ -2740,7 +2284,7 @@ for (i in 1:length(spar01)){
   
   
   ####
-  ##  Output
+  ##  Output to save
   ####
   
   stdat6$cumIncidence = stdat6$prevalence

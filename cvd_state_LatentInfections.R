@@ -22,7 +22,7 @@ cvd_state_LatentInfections = function(curDate, stname, jhuStateDat, jhuStateDat2
   stInd2 = which(stpopulationData$States == stfullname2)
   Xpop = stpopulationData$Est2019_Population[stInd2]
   
-  #  
+  # convert url dataset into a data frame  
   head(jhuStateDat)
   sid = which( (jhuStateDat$StateAbb == stname) & !is.na(jhuStateDat$StateAbb) )
   stdat1 = jhuStateDat[sid, ]
@@ -44,7 +44,7 @@ cvd_state_LatentInfections = function(curDate, stname, jhuStateDat, jhuStateDat2
    
   stdat3$death[is.na(stdat3$death)] = 0
   
-  # preprocessing: make sure non-decreasing TS 
+  # preprocessing: make sure the total number series a non-decreasing TS 
   stdat3$positive = cummax(stdat3$positive)
   stdat3$death = cummax(stdat3$death)
   
@@ -54,6 +54,7 @@ cvd_state_LatentInfections = function(curDate, stname, jhuStateDat, jhuStateDat2
   stdat4 = stdat3[ids, ] 
   date1 = stdat4$date
   
+  # convert the date character var into a Date obj
   tmp = unlist(strsplit(as.character(date1), '[.]'))
   mm_tmp = tmp[seq(1, length(tmp), by=3)]
   date_mm = as.numeric(substr(mm_tmp, 2, 3))  
@@ -65,24 +66,7 @@ cvd_state_LatentInfections = function(curDate, stname, jhuStateDat, jhuStateDat2
     mydates[i] = as.Date(paste0("20", date_yy[i], "-", date_mm[i], "-", date_dd[i]))
   }
   stdat4$mydates = mydates
-  
-  # Daily new confirmed cases
-  dif_cases = c(NA, diff(stdat4$positive))  
-  dif_tests = c(NA, diff(stdat4$numTests))  
-  dif_recovered = c(NA, diff(stdat4$recovered))  
-  dif_death = c(NA, diff(stdat4$death))  
-  stdat4$dif_cases = dif_cases
-  stdat4$dif_tests = dif_tests
-  stdat4$dif_recovered = dif_recovered
-  stdat4$dif_death = dif_death
-  
-  # 7-day moving averages
-  weight0 = rep(1,7)/7
-  stdat4$positive7 = naFilter(stdat4$positive, weight0)
-  stdat4$dif_pos7 = pmax(0, c(NA, diff(stdat4$positive7)))
-  stdat4$numTests7 = filter(stdat4$numTests, weight0, 'convolution', sides=1)
-  stdat4$dif_tst7 = c(NA, diff(stdat4$numTests7))
-  stdat4$testPosRate7 = stdat4$dif_pos7 / stdat4$dif_tst7 * 100
+  # so far, url dataset is preprocessed and prepared into the input dataFrame, stdat4
   
   # core algorithm based on Expectation-Maximization
   # describe_df() in cvd_subftns.R

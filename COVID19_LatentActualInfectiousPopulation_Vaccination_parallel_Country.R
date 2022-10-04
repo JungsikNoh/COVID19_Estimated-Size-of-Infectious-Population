@@ -6,48 +6,71 @@
 # Updates: 
 # J Noh, 08/24/2020. Adjust caption size due to transition to 'cairo' graphics. 
 
-##
-##  1. source functions ####################################
-##  
+## Load packages
 
-options(bitmapType = 'cairo')
+library(ggplot2)		  # for plotting
+library(data.table)
+library(formattable)  # to use comma() for graphs
+library(ggpubr)
+library(wesanderson)  # for wes_palette()
+library(tseries)  
+library(penalized)    # for penalized regression in EM iterations
+library(parallel)		  # simple parallel across regions
+library(doParallel)   # simple parallel across regions
 
-#curDate = Sys.Date(); print(curDate)
-curDate = '2022-09-29'
-print(curDate)
+library(ggrepel)		  # for labeling dots in a scatter plot
+library(matlab)
 
-#setwd( )
+
+## Load functions (which are supposed to be located in the working directory)
+
 print(getwd())
-
 source(file.path(getwd(), 'cvd_subftns.R'))
 source(file.path(getwd(), 'cvd_county_LatentInfections.R'))
 source(file.path(getwd(), 'cvd_state_LatentInfections.R'))
 source(file.path(getwd(), 'cvd_country_LatentInfections.R'))
-
-# to disable a prompt: options(rlib_downstream_check = FALSE)
-library(ggplot2)
-library(data.table)
-library(formattable)
-library(ggpubr)
-#library(RColorBrewer)
-#library(ggsci)
-library(wesanderson)
-library(tseries)
-library(penalized)
-
-library(parallel)
-library(doParallel)
+source(file.path(getwd(), 'summariesOverRegions_subftns.R'))
 
 ##
-##  2. Fetch data   ###########################################
-##
+## 1. Setup parameters & input
+##  
 
-## Countries
-# fetch JHU
+options(bitmapType = 'cairo')   # 'cairo' graphics only when the system is Linux
+curDate = '2022-10-03'
+print(curDate)
+
+# url for datasets of daily numbers of confirmed cases and deaths
+# COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) 
+# at Johns Hopkins University
 urlJhu = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
-#urlJhu = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv'
+urlJhu_death = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv'
+
+url_jhuCounty = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv'
+url_jhuCounty_death = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv'
+
+# url for a vaccination dataset from OWID
+url_countryVac_OWID = 'https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations.csv'
+
+# County population data from UN
+basicDatasetsDir = file.path(getwd(), 'basicDatasets')
+UNpop2019Dat = read.csv(file.path(basicDatasetsDir, 'UN_WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES_2019.csv'))
+# read TX county population 
+popTXcounty= read.csv(file.path(basicDatasetsDir, 'worldpopulationReviewdotcom_2020_TexasCounty.csv'))
+
+# Infaction-fatality-ratio from Verity et al. (2020, Lancet)
+ifr0 = 0.0066 
+ifrL = 0.0039       # lower 95% confidence limit
+ifrU = 0.0133       # upper 95% confidence limit
+
+
+##
+## 2. Fetch data
+##
+
+# Fetch confirmed cases data (countries)
 jhudat = read.csv(urlJhu, head=T)
 
+# aggregate multiple sub-regional counts into the counts of a country
 # china curation
 idPrv = which(jhudat$Country.Region=='China')
 chinaPrv = jhudat[idPrv, ]
@@ -78,11 +101,10 @@ print(head(jhudat))
 
 write.csv(jhudat, file.path(getwd(), 'JHU_CSSE_covid19_confirmed_global.csv'))
 
-##
-## fetch CSSE deaths_global
-urlJhu2 = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv'
-jhudat2 = read.csv(urlJhu2, head=T)
+# Fetch deaths data
+jhudat2 = read.csv(urlJhu_death, head=T)
 
+# aggregate multiple sub-regional counts into the counts of a country
 # china curation
 idPrv = which(jhudat2$Country.Region=='China')
 chinaPrv = jhudat2[idPrv, ]
@@ -113,56 +135,9 @@ head(jhudat2)
 
 write.csv(jhudat2, file.path(getwd(), 'JHU_CSSE_covid19_deaths_global.csv'))
 
-##
-## fetch CSSE recovered_global
-urlJhu3 = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv'
-jhudat3 = read.csv(urlJhu3, head=T)
-
-# china curation
-idPrv = which(jhudat3$Country.Region=='China')
-chinaPrv = jhudat3[idPrv, ]
-chinaPrvTS = chinaPrv[, 5:ncol(jhudat3)]
-chinaTS = colSums(chinaPrvTS)
-chinaHead = data.frame(Province.State='', 'Country.Region'='China', Lat=NA, Long=NA)
-chinaDP = cbind(chinaHead, rbind(chinaTS))
-jhudat3 = rbind(chinaDP, jhudat3[-idPrv, ])
-head(jhudat3)
-# canada curation
-idPrv = which(jhudat3$Country.Region=='Canada')
-chinaPrv = jhudat3[idPrv, ]
-chinaPrvTS = chinaPrv[, 5:ncol(jhudat3)]
-chinaTS = colSums(chinaPrvTS)
-chinaHead = data.frame(Province.State='', 'Country.Region'='Canada', Lat=NA, Long=NA)
-chinaDP = cbind(chinaHead, rbind(chinaTS))
-jhudat3 = rbind(chinaDP, jhudat3[-idPrv, ])
-head(jhudat3)
-# Australia curation
-idPrv = which(jhudat3$Country.Region=='Australia')
-chinaPrv = jhudat3[idPrv, ]
-chinaPrvTS = chinaPrv[, 5:ncol(jhudat3)]
-chinaTS = colSums(chinaPrvTS)
-chinaHead = data.frame(Province.State='', 'Country.Region'='Australia', Lat=NA, Long=NA)
-chinaDP = cbind(chinaHead, rbind(chinaTS))
-jhudat3 = rbind(chinaDP, jhudat3[-idPrv, ])
-head(jhudat3)
-
-write.csv(jhudat3, file.path(getwd(), 'JHU_CSSE_covid19_recovered_global.csv'))
-
-
-## States
-## fetch states data from covidtracking.com
-#url2 = 'https://covidtracking.com/api/v1/states/daily.csv'
-#covidtrackingDat = read.csv(url2, head=T)
-## daily input dataset
-#write.csv(covidtrackingDat, file.path(getwd(), 'covidtracking_dot_com.csv'))
-#print(head(covidtrackingDat[, 1:7]))
-
-
 Sys.sleep(5)
-
-## TX counties
-## fetch TX county data from JHU
-url_jhuCounty = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv'
+ 
+# Fetch confirmed cases data (counties)
 jhuCountyDat = read.csv(url_jhuCounty, head=T)
 # counties in Texas
 ind = (jhuCountyDat$Province_State == 'Texas')
@@ -171,10 +146,8 @@ TXcountyDat = jhuCountyDat[ind, ]
 write.csv(TXcountyDat, file.path(getwd(), 'TXcounty_confirmed_JHUCSSE.csv'))
 print(tail(TXcountyDat))
 
-
-## fetch TX county deaths from JHU
-url_jhuCounty2 = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv'
-jhuCountyDat2 = read.csv(url_jhuCounty2, head=T)
+# Fetch TX county deaths from JHU
+jhuCountyDat2 = read.csv(url_jhuCounty_death, head=T)
 # counties in Texas
 ind = (jhuCountyDat2$Province_State == 'Texas')
 TXcountyDat2 = jhuCountyDat2[ind, ]
@@ -183,74 +156,42 @@ write.csv(TXcountyDat2, file.path(getwd(), 'TXcounty_deaths_JHUCSSE.csv'))
 print(tail(TXcountyDat2))
 
 
-## Population data
-# csv input files
-basicDatasetsDir = file.path(getwd(), 'basicDatasets')
-populationData = read.csv(file.path(basicDatasetsDir, 'usItalyKorea_Population2020UN.csv'))
-stpopulationData =
-  read.csv(file.path(basicDatasetsDir, 'USstatesPopulation_USCensusBureau_simplified.csv'))
-
-# UNpop2019Dat
-UNpop2019Dat = read.csv(file.path(basicDatasetsDir, 'UN_WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES_2019.csv'))
-
-# read TX county population 
-popTXcounty= read.csv(file.path(basicDatasetsDir, 'worldpopulationReviewdotcom_2020_TexasCounty.csv'))
-
-
-
-##
-## 3. Global parameters   ############################
+## 
+## 3. Run cvd_country_LatentInfections() in parallel
 ##
 
-#totalCases_threshold_toSetStart = 100 
-# Infection Fatality Rate
-#ifr0 = 0.01
-ifr0 = 0.0066 
-ifrL = 0.0039
-ifrU = 0.0133
-
-
-
-## 
-##  4. Top 50 countries   ###################################
-## 
-
-t1 = Sys.time()
 numCntr = 50
-
 jhudatL = jhudat[, c(2, ncol(jhudat))]
 head(jhudatL)
 scases = sort(jhudatL[, 2], index.return = T, decreasing = T)
 jhudatL2 = jhudatL[scases$ix, ]
 print(jhudatL2[1:numCntr, ])
-namesTop20 = as.character(jhudatL2$Country.Region[1:numCntr])
+countryNames = as.character(jhudatL2$Country.Region[1:numCntr])
 
-# Korea is not in top 25 (04/21 revised)
-namesTop20 = c(namesTop20, 'Korea, South')
+# include Korea in the list (04/21 revised)
+countryNames = c(countryNames, 'Korea, South')
 
-# name curation -.-;; 
-namesTop20_1 = namesTop20
-namesTop20_1[(namesTop20 == 'US')] = 'United States of America'
-namesTop20_1[(namesTop20 == 'Korea, South')] = 'Republic of Korea'
-namesTop20_1[(namesTop20 == 'Iran')] = 'Iran (Islamic Republic of)'
-namesTop20_1[(namesTop20 == 'Russia')] = 'Russian Federation'
-namesTop20_1[(namesTop20 == 'Bolivia')] = 'Bolivia (Plurinational State of)'
-namesTop20_1[(namesTop20 == 'Venezuela')] = 'Venezuela (Bolivarian Republic of)'
-namesTop20_1[(namesTop20 == 'Vietnam')] = 'Viet Nam'
-namesTop20_1[(namesTop20 == 'Taiwan*')] = 'China, Taiwan Province of China'
-
+# Unify country names according to UN pop dataset
+countryNames_1 = countryNames
+countryNames_1[(countryNames == 'US')] = 'United States of America'
+countryNames_1[(countryNames == 'Korea, South')] = 'Republic of Korea'
+countryNames_1[(countryNames == 'Iran')] = 'Iran (Islamic Republic of)'
+countryNames_1[(countryNames == 'Russia')] = 'Russian Federation'
+countryNames_1[(countryNames == 'Bolivia')] = 'Bolivia (Plurinational State of)'
+countryNames_1[(countryNames == 'Venezuela')] = 'Venezuela (Bolivarian Republic of)'
+countryNames_1[(countryNames == 'Vietnam')] = 'Viet Nam'
+countryNames_1[(countryNames == 'Taiwan*')] = 'China, Taiwan Province of China'
 
 # pop preprocessing
-countryNamePop = data.frame(Region = namesTop20, namesTop20_1, pop2019 = 1:length(namesTop20))
+countryNamePop = data.frame(Region = countryNames, countryNames_1, pop2019 = 1:length(countryNames))
 for (i in 1:nrow(countryNamePop)){
-  pop0 = UNpop2019Dat$X2019[which(UNpop2019Dat$Region == namesTop20_1[i])]
+  pop0 = UNpop2019Dat$X2019[which(UNpop2019Dat$Region == countryNames_1[i])]
   countryNamePop$pop2019[i] = pop0
 }
 print(countryNamePop$Region)
 
-
+# One cluster for each country
 t1=Sys.time()
-# run countries 
 cl = makeCluster(51)
 registerDoParallel(cl)
 clusterCall(cl, function() options(bitmapType = 'cairo'))
@@ -261,8 +202,8 @@ outLst_country = list()
 outLst_country <- foreach(i = 1:(numCntr+1), 
                     .packages = c('ggplot2', 'data.table','formattable',
                                   'ggpubr','RColorBrewer','ggsci','wesanderson','tseries','penalized')) %dopar% {  
-  stname = as.character(countryNamePop$Region[i])
-  tmp = cvd_country_LatentInfections(curDate, stname, jhudat, jhudat2, jhudat3, 
+  cname = as.character(countryNamePop$Region[i])
+  tmp = cvd_country_LatentInfections(curDate, cname, jhudat, jhudat2,  
                                 countryNamePop, ifr0, ifrL, ifrU)
 }
 stopCluster(cl)
@@ -270,15 +211,11 @@ stopCluster(cl)
 t2=Sys.time(); print(t2-t1)
 
 
-
-
 ## 
-##  5. TX Counties from JHU   ##############################
+## 4. Run cvd_county_LatentInfections() in parallel (TX county)
 ## 
 
 numCnty = 15 
-
-
 # county sorting
 TXcountyDatL = TXcountyDat[, c(6, ncol(TXcountyDat))]
 head(TXcountyDatL)
@@ -288,47 +225,30 @@ print(TXcountyDatL2[1:numCnty, ])
 sortedCounties = as.character(TXcountyDatL2$Admin2[1:numCnty])
 print(sortedCounties)
 
-
-# run counties 
+# One cluster for each county
 cl = makeCluster(15)
 registerDoParallel(cl)
 clusterCall(cl, function() options(bitmapType = 'cairo'))
 print(cl)
 
 outLst_county = list()
-#for (i in 1:numCnty)  {
 outLst_county <- foreach(i = 1:numCnty, 
                             .packages = c('ggplot2', 'data.table','formattable',
                                           'ggpubr','RColorBrewer','ggsci','wesanderson','tseries','penalized')) %dopar% {    
   cntyname = sortedCounties[i]
   cvd_county_LatentInfections(curDate, cntyname, TXcountyDat, TXcountyDat2, 
                                      popTXcounty, ifr0, ifrL, ifrU)
-  #outLst_county[[i]] = tmp
 }
 stopCluster(cl)
 
 t2=Sys.time(); print(t2-t1)
 
 
-## Summaries Over regions
-
 ##
-## 0. set up  ####
+## 5. Make summary plots for countries (output/country_summary)
+##
 
-# curDate = '2020-08-10'
 print(curDate)
-
-library(ggplot2)
-library(ggrepel)
-library(matlab)
-#library(RColorBrewer)
-
-source(file.path(getwd(), 'summariesOverRegions_subftns.R'))
-
-##
-##  1. country_summary ####
-##
-
 rgnNames = countryNamePop$Region[1:50]
 popVec = countryNamePop$pop2019[1:50]
 
@@ -346,13 +266,13 @@ outsumPath = file.path(getwd(), 'output', 'country_summary', paste0(curDate))
 if (!dir.exists(outsumPath)) dir.create(outsumPath, recursive = T)
 output_current = file.path(getwd(), 'output', 'countries_current' )
 
-## plot summaries
+# plot summaries
+# taking global variables as input (myLst, rgnNames, outsumPath, popVec)
 cvd_plotSummaries()
 
 
-
 ##
-##  3. TX_county_summary   ####
+## 5. Make summary plots for TX counties (output/county_summary)
 ##
 
 rgnNames = sortedCounties 
@@ -383,47 +303,43 @@ outsumPath = file.path(getwd(), 'output', 'TX_county_summary', paste0(curDate))
 if (!dir.exists(outsumPath)) dir.create(outsumPath, recursive = T)
 output_current = file.path(getwd(), 'output', 'TX_counties_current' )
 
-## plot summaries
-
+# plot summaries
+# taking global variables as input (myLst, rgnNames, outsumPath, popVec)
 cvd_plotSummaries(cumAsctRate_nudge_x = 10, cumAsctRate_nudge_y = 1)
 
 
 ##  
-##  4. Fetch vaccination data   ###########################################
-##
-library(matlab)
+## 6. Fetch vaccination data  
+## 
+
 outsumPath = file.path(getwd(), 'output', 'country_summary', paste0(curDate))
 if (!dir.exists(outsumPath)) dir.create(outsumPath, recursive = T)
 output_current = file.path(getwd(), 'output', 'countries_current' )
 
-## Countries
+# Countries
 # fetch from OWID
-url1 = 'https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations.csv'
-dat1 = read.csv(url1, head=T)
+dat1 = read.csv(url_countryVac_OWID, head=T)
 datCountry = dat1[, c('location', 'date', 'people_vaccinated_per_hundred','people_fully_vaccinated_per_hundred',
                       'people_vaccinated', 'people_fully_vaccinated','total_vaccinations_per_hundred')]
 
-## sort vaccination data
-
+# Sort vaccination data
 curDateVac = as.Date(curDate) - 2
 ind = which(datCountry$date ==  as.character(curDateVac))
 datCountryLast = datCountry[ind, ]
 
-# vaccination data curation
-# name curation -.-;; 
+# Match country names in JHU and OWID datasets
 location2 = as.character(datCountryLast$location)
 location2[(datCountryLast$location == 'United States')] = 'US'
 location2[(datCountryLast$location == 'South Korea')] = 'Korea, South'
 datCountryLast2 = datCountryLast
 datCountryLast2$location = location2
 
-## load regns2.csv 
+# Load regns2.csv 
 outsumPathVac = file.path(getwd(), 'output', 'country_summary', paste0(curDateVac))
 fname = file.path(outsumPathVac, 'regns2.csv')
 regns2 = read.csv(fname)
 
-## match vac countries and regns2 names
-
+# Match vac countries and regns2 names
 ind = match(regns2[, 1], location2)
 sum(!is.na(ind))
 regns2Vac = data.frame(region = regns2$X, cumAsctRate = regns2$cumAsctRate, 
@@ -436,19 +352,21 @@ for (i in 1:nrow(regns2Vac)){
   } 
 }
 
-## Vaccinated or Once-infected
-
+# Vaccinated or Once-infected
 regns2Vac$pctVaccinatedInfected = 
   regns2Vac$pctVaccinated + regns2Vac$pctEstTotalCases - regns2Vac$pctVaccinated/100 * regns2Vac$pctEstTotalCases
 regns2Vac$pctFullyVaccinatedInfected = 
   regns2Vac$pctFullyVaccinated + regns2Vac$pctEstTotalCases - regns2Vac$pctFullyVaccinated/100 * regns2Vac$pctEstTotalCases
 
 hit1 = round(100*(1-1/3))
-hit2 = round(100*(1-1/4))
-#hit3 = round(100*(1-1/5))
+hit2 = round(100*(1-1/4)) 
 
-## summary plot of the vaccinated or once-infected
 
+##
+## 7. Summaries of vaccination datasets
+##
+
+# Summary plot of the vaccinated or once-infected
 n = nrow(regns2Vac) 
 regns2Vac$regionSorted = factor(regns2Vac$region, levels = regns2Vac$region)
 indNA = which(is.na(regns2Vac$pctVaccinatedInfected))
@@ -504,9 +422,7 @@ myjet3 = myjet2[-indNA]
   Sys.sleep(1)
 }
 
-
-## summary plot of the vaccinated
-
+# summary plot of the vaccinated
 n = nrow(regns2Vac) 
 regns2Vac$regionSorted = factor(regns2Vac$region, levels = regns2Vac$region)
 indNA = which(is.na(regns2Vac$pctVaccinated))
@@ -562,9 +478,7 @@ myjet3 = myjet2[-indNA]
   Sys.sleep(1)
 }
 
-
-## summary plot of the fully vaccinated or once-infected
-
+# summary plot of the fully vaccinated or once-infected
 n = nrow(regns2Vac) 
 regns2Vac$regionSorted = factor(regns2Vac$region, levels = regns2Vac$region)
 indNA = which(is.na(regns2Vac$pctFullyVaccinatedInfected))
@@ -620,9 +534,7 @@ myjet3 = myjet2[-indNA]
   Sys.sleep(1)
 }
 
-
-## summary plot of the fully vaccinated
-
+# summary plot of the fully vaccinated
 n = nrow(regns2Vac) 
 regns2Vac$regionSorted = factor(regns2Vac$region, levels = regns2Vac$region)
 indNA = which(is.na(regns2Vac$pctFullyVaccinated))
@@ -680,37 +592,24 @@ myjet3 = myjet2[-indNA]
   Sys.sleep(1)
 }
 
-## output_current
+# output_current
 
 file.copy(from= file.path(outsumPath, 'pctVaccinatedInfected.png'), to=output_current, overwrite = T, recursive = T)
 file.copy(from= file.path(outsumPath, 'pctVaccinated.png'), to=output_current, overwrite = T, recursive = T)
 file.copy(from= file.path(outsumPath, 'pctFullyVaccinatedInfected.png'), to=output_current, overwrite = T, recursive = T)
 file.copy(from= file.path(outsumPath, 'pctFullyVaccinated.png'), to=output_current, overwrite = T, recursive = T)
 
+
 ##
-##  End: Vaccinatation toward herd immunity
+## 8. Generate report markdown files for countries
 ##
 
-
-
-## COVID-19: Estimating the Size of Latent Actual Infectious Population
-## Jungsik Noh, UTSW, Dallas, TX
-## 
-
-# assume input datasets are already loaded to workspace
 print(getwd())
 print(curDate)
-
-##
-##  country report  ####
-##
-
 head(countryNamePop)
 
-# curation
-cname = as.character(countryNamePop$Region)
-
 # name curation for white spaces
+cname = as.character(countryNamePop$Region)
 whspInd = rep(0, nrow(countryNamePop))
 cname2 = rep(NA, nrow(countryNamePop))
 for (i in 1:(numCntr+1)){
@@ -719,6 +618,7 @@ for (i in 1:(numCntr+1)){
   whspInd[i] = (x != y)
   cname2[i] = y
 } 
+
 # change filename
 outPath3 = file.path(getwd(), 'output', 'countries_current')
 for (i in which(whspInd==1)){
@@ -731,8 +631,7 @@ for (i in which(whspInd==1)){
   }
 }
 
-
-## 1
+# 1
 repname1 = 'REPORT_COUNTRY.md'
 
 sink(file.path(getwd(), repname1))
@@ -775,9 +674,7 @@ for (i in 1:numCntr){
 
 sink()
 
-
-
-## 2
+# 2
 repname1 = 'REPORT_COUNTRY_RECENT8w.md'
 
 sink(file.path(getwd(), repname1))
@@ -820,8 +717,7 @@ cat('\n\n', '<p>&nbsp;</p>', '\n\n')
 
 sink()
 
-
-## 3
+# 3
 repname1 = 'Daily_confirmed_raw_country.md'
 
 sink(file.path(getwd(), 'doc', repname1))
@@ -847,8 +743,7 @@ for (i in seq(1, numCntr, 2)){
    
 sink()
 
-
-## 4
+# 4
 repname1 = 'Daily_rates_country.md'
 
 sink(file.path(getwd(), 'doc', repname1))
@@ -892,18 +787,14 @@ cat('\n\n', '<p>&nbsp;</p>', '\n\n')
 sink()
 
 
-
-
 ##
-##  county report   ####
+## 9. Generate report markdown files for TX counties
 ##
 
 head(sortedCounties)
 
-# curation
-Ctname = as.character(sortedCounties)
-
 # name curation for white spaces
+Ctname = as.character(sortedCounties)
 whspInd = rep(0, length(sortedCounties))
 Ctname2 = rep(NA, length(sortedCounties))
 for (i in 1:(numCnty)){
@@ -924,8 +815,7 @@ for (i in which(whspInd==1)){
   }
 }
 
-
-## 1
+# 1
 repname3 = 'REPORT_TX_COUNTY.md'
 
 sink(file.path(getwd(), repname3))
@@ -952,9 +842,7 @@ for (i in 1:length(Ctname)){
 }
 sink()
 
-
-
-## 2
+# 2
 repname3 = 'REPORT_TX_COUNTY_RECENT8w.md'
 
 sink(file.path(getwd(), repname3))
@@ -981,9 +869,7 @@ for (i in 1:length(Ctname)){
 }
 sink()
 
-
-
-## 3
+# 3
 repname1 = 'Daily_confirmed_raw_TX_county.md'
 
 sink(file.path(getwd(), 'doc', repname1))
@@ -1010,8 +896,7 @@ cat(paste0(  '|  <img src="/output/TX_counties_current/', fnametmp1, '" width="4
 
 sink()
 
-
-## 4
+# 4
 repname1 = 'Daily_rates_TX_county.md'
 
 sink(file.path(getwd(), 'doc', repname1))
@@ -1040,11 +925,5 @@ for (i in 1:length(Ctname2)){
 sink()
 
 
-
+##
 ##  EOF
-
-
-
-
-
-## EOF    #######
