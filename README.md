@@ -3,6 +3,12 @@
  <p>&nbsp;</p> 
 
  <p>&nbsp;</p> 
+ 
+## The end of repository updates
+- As of 10/7/2022, this repository will be no longer updated.
+- I have been very grateful for your visits and interests during the past two years. 
+ 
+<p>&nbsp;</p> 
 
 ## Announcement
 
