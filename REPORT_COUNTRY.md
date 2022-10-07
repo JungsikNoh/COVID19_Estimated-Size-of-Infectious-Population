@@ -4,7 +4,7 @@
 
  <p>&nbsp;</p> 
 
-## 2022-09-22, COVID-19 Time Series
+## 2022-10-06, COVID-19 Time Series
 # Countries (top 50)
 
 
@@ -24,17 +24,17 @@
 
  <p>&nbsp;</p> 
 
-3. Brazil <p>
-> <img src="/output/countries_current/Brazil_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Brazil_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Brazil_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Brazil_estTotalCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-4. France <p>
+3. France <p>
 > <img src="/output/countries_current/France_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/France_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/France_estInfections.png" width="49.5%"/> <img src="/output/countries_current/France_estTotalCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+4. Brazil <p>
+> <img src="/output/countries_current/Brazil_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Brazil_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Brazil_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Brazil_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -136,17 +136,17 @@
 
  <p>&nbsp;</p> 
 
-19. Indonesia <p>
-> <img src="/output/countries_current/Indonesia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Indonesia_NewCasesEstConfirmed.png" width="49.5%"/> 
+19. Taiwan* <p>
+> <img src="/output/countries_current/Taiwan*_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Taiwan*_NewCasesEstConfirmed.png" width="49.5%"/> 
 
-> <img src="/output/countries_current/Indonesia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Indonesia_estTotalCases.png" width="49.5%"/> 
+> <img src="/output/countries_current/Taiwan*_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Taiwan*_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
-20. Colombia <p>
-> <img src="/output/countries_current/Colombia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Colombia_NewCasesEstConfirmed.png" width="49.5%"/> 
+20. Indonesia <p>
+> <img src="/output/countries_current/Indonesia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Indonesia_NewCasesEstConfirmed.png" width="49.5%"/> 
 
-> <img src="/output/countries_current/Colombia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Colombia_estTotalCases.png" width="49.5%"/> 
+> <img src="/output/countries_current/Indonesia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Indonesia_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -157,10 +157,10 @@
 
  <p>&nbsp;</p> 
 
-22. Taiwan* <p>
-> <img src="/output/countries_current/Taiwan*_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Taiwan*_NewCasesEstConfirmed.png" width="49.5%"/> 
+22. Colombia <p>
+> <img src="/output/countries_current/Colombia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Colombia_NewCasesEstConfirmed.png" width="49.5%"/> 
 
-> <img src="/output/countries_current/Taiwan*_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Taiwan*_estTotalCases.png" width="49.5%"/> 
+> <img src="/output/countries_current/Colombia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Colombia_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -241,17 +241,17 @@
 
  <p>&nbsp;</p> 
 
-34. Czechia <p>
-> <img src="/output/countries_current/Czechia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Czechia_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Czechia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Czechia_estTotalCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-35. Switzerland <p>
+34. Switzerland <p>
 > <img src="/output/countries_current/Switzerland_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Switzerland_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/Switzerland_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Switzerland_estTotalCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+35. Czechia <p>
+> <img src="/output/countries_current/Czechia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Czechia_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Czechia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Czechia_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -339,17 +339,17 @@
 
  <p>&nbsp;</p> 
 
-48. Georgia <p>
-> <img src="/output/countries_current/Georgia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Georgia_NewCasesEstConfirmed.png" width="49.5%"/> 
-
-> <img src="/output/countries_current/Georgia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Georgia_estTotalCases.png" width="49.5%"/> 
-
- <p>&nbsp;</p> 
-
-49. New Zealand <p>
+48. New Zealand <p>
 > <img src="/output/countries_current/New Zealand_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/New Zealand_NewCasesEstConfirmed.png" width="49.5%"/> 
 
 > <img src="/output/countries_current/New Zealand_estInfections.png" width="49.5%"/> <img src="/output/countries_current/New Zealand_estTotalCases.png" width="49.5%"/> 
+
+ <p>&nbsp;</p> 
+
+49. Georgia <p>
+> <img src="/output/countries_current/Georgia_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/Georgia_NewCasesEstConfirmed.png" width="49.5%"/> 
+
+> <img src="/output/countries_current/Georgia_estInfections.png" width="49.5%"/> <img src="/output/countries_current/Georgia_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 

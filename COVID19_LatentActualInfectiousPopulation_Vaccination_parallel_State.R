@@ -36,7 +36,7 @@ source(file.path(getwd(), 'summariesOverRegions_subftns.R'))
 ##  
 
 options(bitmapType = 'cairo')   # 'cairo' graphics only when the system is Linux
-curDate = '2022-10-04'
+curDate = '2022-10-06'
 print(curDate)
  
 # url for datasets of daily numbers of confirmed cases and deaths
