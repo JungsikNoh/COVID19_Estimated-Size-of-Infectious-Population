@@ -27,9 +27,9 @@
 
  <p>&nbsp;</p> 
  
-> <img src="/output/countries_current/US_newCases7d.png" width="49.5%"/> <img src="/output/countries_current/US_NewCasesEstConfirmed.png" width="49.5%"/> 
+> <img src="https://github.com/JungsikNoh/COVID19_Estimated-Size-of-Infectious-Population/blob/main/output/countries_current/US_newCases7d.png" width="49.5%"/> <img src="https://github.com/JungsikNoh/COVID19_Estimated-Size-of-Infectious-Population/blob/main/output/countries_current/US_NewCasesEstConfirmed.png" width="49.5%"/> 
 
-> <img src="/output/countries_current/US_estInfections.png" width="49.5%"/> <img src="/output/countries_current/US_estTotalCases.png" width="49.5%"/> 
+> <img src="https://github.com/JungsikNoh/COVID19_Estimated-Size-of-Infectious-Population/blob/main/output/countries_current/US_estInfections.png" width="49.5%"/> <img src="https://github.com/JungsikNoh/COVID19_Estimated-Size-of-Infectious-Population/blob/main/output/countries_current/US_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
