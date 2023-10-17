@@ -27,9 +27,9 @@
 
  <p>&nbsp;</p> 
  
-> <img src="https://github.com/JungsikNoh/COVID19_Estimated-Size-of-Infectious-Population/blob/main/output/countries_current/US_newCases7d.png" width="49.5%"/> <img src="https://github.com/JungsikNoh/COVID19_Estimated-Size-of-Infectious-Population/blob/main/output/countries_current/US_NewCasesEstConfirmed.png" width="49.5%"/> 
+<img src="output/countries_current/US_newCases7d.png" width="49.5%"/> <img src="output/countries_current/US_NewCasesEstConfirmed.png" width="49.5%"/> 
 
-> <img src="https://github.com/JungsikNoh/COVID19_Estimated-Size-of-Infectious-Population/blob/main/output/countries_current/US_estInfections.png" width="49.5%"/> <img src="https://github.com/JungsikNoh/COVID19_Estimated-Size-of-Infectious-Population/blob/main/output/countries_current/US_estTotalCases.png" width="49.5%"/> 
+<img src="output/countries_current/US_estInfections.png" width="49.5%"/> <img src="output/countries_current/US_estTotalCases.png" width="49.5%"/> 
 
  <p>&nbsp;</p> 
 
@@ -53,9 +53,9 @@ The figures below show that a high case-fatality-rate indicates severe under-rep
 After under-reporting-adjustment, the obtained infection-fatality-rates no longer correlate with the ascertainment rates. 
 
 
-> <img src="/output/countries_current/CFRvsAsctRate.png" width="49.5%"/> <img src="/output/countries_current/IFRvsAsctRate.png" width="49.5%"/>
+<img src="/output/countries_current/CFRvsAsctRate.png" width="49.5%"/> <img src="/output/countries_current/IFRvsAsctRate.png" width="49.5%"/>
 
-> <img src="/output/states_current/CFRvsAsctRate.png" width="49.5%"/> <img src="/output/states_current/IFRvsAsctRate.png" width="49.5%"/>
+<img src="/output/states_current/CFRvsAsctRate.png" width="49.5%"/> <img src="/output/states_current/IFRvsAsctRate.png" width="49.5%"/>
 
 <p>&nbsp;</p>
 
